@@ -8,6 +8,7 @@ import { ButtonComponent } from './button/button.component';
     declarations: [ButtonComponent],
     imports: [
         CommonModule
-    ]
+    ],
+    exports: [ButtonComponent]
 })
 export class SharedModule { }

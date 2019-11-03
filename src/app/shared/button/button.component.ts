@@ -1,25 +1,36 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { getClassFromSize } from '../utils/utils';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BaseElement } from 'src/app/core/base-element';
+import { getBtnTypeClass } from 'src/app/core/utils';
 
 @Component({
     selector: 'do-button',
     templateUrl: './button.component.html',
     styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent {
+export class ButtonComponent extends BaseElement implements OnInit {
     @Output() onClick: EventEmitter<boolean> = new EventEmitter();
 
     @Input() label: string;
-    @Input() set size(value: string) {
-        if (value) {
-            this.sizeClass = getClassFromSize(value);
+    @Input() type:
+        'danger' | 'success' | 'primary' | 'secondary' | 'info' | 'warning' | 'light' | 'dark' | 'link';
+    @Input() noFocusCss: boolean;
+
+    btnType: string;
+
+    ngOnInit() {
+        this.setUpButtonType();
+    }
+
+    setUpButtonType() {
+        if (!this.btnType) {
+            this.btnType = getBtnTypeClass('primary');
+        } else {
+            this.btnType = getBtnTypeClass(this.type);
         }
     }
-    @Input() style: string;
-
-    sizeClass = getClassFromSize('12|12|12');
 
     buttonClicked() {
         this.onClick.emit(true);
     }
+
 }
