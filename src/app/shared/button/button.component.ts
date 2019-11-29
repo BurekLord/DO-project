@@ -2,6 +2,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BaseElement } from 'src/app/core/base-element';
 import { getBtnTypeClass } from 'src/app/core/utils';
 
+export enum BUTTON_TYPES {
+    DANGER = 'danger',
+    SUCCESS = 'success',
+    PRIMARY = 'primary',
+    SECONDARY = 'secondary',
+    INFO = 'info',
+    WARNING = 'warning',
+    LIGHT = 'light',
+    DARK = 'dark',
+    LINK = 'link'
+}
+
 @Component({
     selector: 'do-button',
     templateUrl: './button.component.html',
@@ -11,8 +23,7 @@ export class ButtonComponent extends BaseElement implements OnInit {
     @Output() onClick: EventEmitter<boolean> = new EventEmitter();
 
     @Input() label: string;
-    @Input() type:
-        'danger' | 'success' | 'primary' | 'secondary' | 'info' | 'warning' | 'light' | 'dark' | 'link';
+    @Input() type: BUTTON_TYPES;
     @Input() noFocusCss: boolean;
 
     btnType: string;
@@ -22,7 +33,7 @@ export class ButtonComponent extends BaseElement implements OnInit {
     }
 
     setUpButtonType() {
-        if (!this.btnType) {
+        if (!this.type) {
             this.btnType = getBtnTypeClass('primary');
         } else {
             this.btnType = getBtnTypeClass(this.type);
