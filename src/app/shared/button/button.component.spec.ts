@@ -1,19 +1,24 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, fakeAsync, ComponentFixture } from '@angular/core/testing';
 import { ButtonComponent, BUTTON_TYPES } from './button.component';
 
 describe('ButtonComponent', () => {
 
     let componentUnderTest: ButtonComponent;
+    let fixture: ComponentFixture<ButtonComponent>;
+    let fakeData;
+    let fakeResult;
 
     Given(() => {
         TestBed.configureTestingModule({
             providers: [ButtonComponent]
         });
         componentUnderTest = TestBed.get(ButtonComponent);
+        fixture = TestBed.createComponent(ButtonComponent);
+        fakeData = undefined;
+        fakeResult = undefined;
     });
 
     describe('METHOD: setUpButtonType', () => {
-        let fakeResult: string;
 
         When(() => {
             componentUnderTest.setUpButtonType();
@@ -22,7 +27,9 @@ describe('ButtonComponent', () => {
         describe('GIVEN there is no button type input THEN button type should be default', () => {
             Given(() => {
                 componentUnderTest.type = undefined;
+                componentUnderTest.customCss = undefined;
                 fakeResult = 'btn-primary';
+                componentUnderTest.ngOnInit();
             });
 
             Then(() => {
@@ -31,10 +38,11 @@ describe('ButtonComponent', () => {
         });
 
         describe('GIVEN there is button type input THEN button type should be set to that input', () => {
-            Given(() => {
+            Given(fakeAsync(() => {
                 componentUnderTest.type = BUTTON_TYPES.SUCCESS;
                 fakeResult = 'btn-success';
-            });
+                componentUnderTest.ngOnInit();
+            }));
 
             Then(() => {
                 expect(componentUnderTest.btnType).toEqual(fakeResult);
@@ -49,6 +57,36 @@ describe('ButtonComponent', () => {
         });
         Then(() => {
             expect(componentUnderTest.onClick.emit).toHaveBeenCalledWith(true);
+        });
+    });
+
+    describe('METHOD: getBtnTypeClass', () => {
+        describe('GIVEN method is called with valid data THEN return appropriate css class', () => {
+            Given(() => {
+                fakeData = BUTTON_TYPES.SUCCESS;
+                fakeResult = 'btn-success';
+            });
+            Then(() => {
+                expect(componentUnderTest.getBtnTypeClass(fakeData)).toEqual(fakeResult);
+            });
+        });
+        describe('GIVEN method is called with invalid data THEN return undefined', () => {
+            Given(() => {
+                fakeData = 'invalid data';
+                fakeResult = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.getBtnTypeClass(fakeData)).toEqual(fakeResult);
+            });
+        });
+        describe('GIVEN method is called without data THEN return undefined', () => {
+            Given(() => {
+                fakeData = undefined;
+                fakeResult = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.getBtnTypeClass(fakeData)).toEqual(fakeResult);
+            });
         });
     });
 });

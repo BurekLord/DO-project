@@ -51,7 +51,6 @@
             "time",
             "timeEnd",
             "trace",
-            "log",
             "error"
         ],
         "no-empty": true,
