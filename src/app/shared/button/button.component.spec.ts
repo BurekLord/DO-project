@@ -4,7 +4,6 @@ import { ButtonComponent, BUTTON_TYPES } from './button.component';
 describe('ButtonComponent', () => {
 
     let componentUnderTest: ButtonComponent;
-    let fixture: ComponentFixture<ButtonComponent>;
     let fakeData;
     let fakeResult;
 
@@ -13,7 +12,6 @@ describe('ButtonComponent', () => {
             providers: [ButtonComponent]
         });
         componentUnderTest = TestBed.get(ButtonComponent);
-        fixture = TestBed.createComponent(ButtonComponent);
         fakeData = undefined;
         fakeResult = undefined;
     });
