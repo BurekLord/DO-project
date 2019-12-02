@@ -4,6 +4,6 @@
             class="{{btnType}} {{subElementSizeClass}} {{customCss}}"
             [ngClass]="{'no-focus': noFocusCss, 'btn': !customCss}"
             (click)="buttonClicked()"
-        >{{ label }}</button>
+        >{{ label | translate }}</button>
     </div>
 </div>

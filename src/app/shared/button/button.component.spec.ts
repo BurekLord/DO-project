@@ -1,4 +1,7 @@
-import { TestBed, fakeAsync, ComponentFixture } from '@angular/core/testing';
+import { createSpyFromClass } from 'jasmine-auto-spies';
+import { TranslateService } from '@ngx-translate/core';
+
+import { TestBed, fakeAsync } from '@angular/core/testing';
 import { ButtonComponent, BUTTON_TYPES } from './button.component';
 
 describe('ButtonComponent', () => {
@@ -9,7 +12,7 @@ describe('ButtonComponent', () => {
 
     Given(() => {
         TestBed.configureTestingModule({
-            providers: [ButtonComponent]
+            providers: [ButtonComponent, { provide: TranslateService, useValue: createSpyFromClass(TranslateService) }]
         });
         componentUnderTest = TestBed.get(ButtonComponent);
         fakeData = undefined;
