@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BaseElement } from 'src/app/core/base-element';
+import { BaseElement } from '../core/base-element';
 
 export enum BUTTON_TYPES {
     DANGER = 'danger',
