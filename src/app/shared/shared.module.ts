@@ -25,6 +25,6 @@ export function HttpLoaderFactory(http: HttpClient) {
             }
         }),
     ],
-    exports: [ButtonComponent]
+    exports: [ButtonComponent, TooltipComponent, InputErrorComponent, InputComponent]
 })
 export class SharedModule { }

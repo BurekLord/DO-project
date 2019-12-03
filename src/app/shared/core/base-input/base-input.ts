@@ -1,14 +1,15 @@
+import { TooltipModel } from './../../models/tooltip.model';
 import { ErrorLabel } from '../../models/error-label.model';
 import { BaseElement } from '../base-element';
 import { OnInit, Input, ElementRef, ViewChild } from '@angular/core';
-import { ControlValueAccessor, Validator, FormControl, ValidationErrors } from '@angular/forms';
+import { ControlValueAccessor, FormControl } from '@angular/forms';
 import { log } from 'util';
 
 /**
  * Intended to be extended by other components like Input, checkbox, radio etc...
  */
 
-export abstract class BaseInputComponent extends BaseElement implements ControlValueAccessor, Validator, OnInit {
+export abstract class BaseInputComponent extends BaseElement implements ControlValueAccessor, OnInit {
 
     @Input('label') set $label(value: string) {
         const mathRandom = Math.floor(Math.random() * 9999);
@@ -29,6 +30,7 @@ export abstract class BaseInputComponent extends BaseElement implements ControlV
     @Input() placeholderHidden = false;
     @Input() formControl = new FormControl();
     @Input() errorsLabel: Array<ErrorLabel>;
+    @Input() tooltip: TooltipModel;
 
     label: string;
     placeholder: string;
@@ -86,8 +88,6 @@ export abstract class BaseInputComponent extends BaseElement implements ControlV
     abstract writeValue(textInput: any): void;
 
     abstract ngOnInitForChildren();
-
-    abstract validate(): ValidationErrors;
 
     abstract extractInformationFromInternalInput($event: any): any;
 }

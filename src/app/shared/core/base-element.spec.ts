@@ -51,6 +51,7 @@ describe('BaseElement', () => {
     });
 
     describe('INPUT: subElementSize', () => {
+        // tslint:disable-next-line: max-line-length
         describe('GIVEN value passed in subElementSize input is 12|12|12|12 THEN set subElementSizeClass with xs size', () => {
             Given(() => {
                 componentUnderTest.subElementSize = '12|12|12|12';
@@ -60,6 +61,7 @@ describe('BaseElement', () => {
                 expect(componentUnderTest.subElementSizeClass).toEqual(fakeSize);
             });
         });
+        // tslint:disable-next-line: max-line-length
         describe('GIVEN value passed in subElementSize input is 12|12|12 THEN set subElementSizeClass without xs size', () => {
             Given(() => {
                 componentUnderTest.subElementSize = '12|12|12';
@@ -69,6 +71,7 @@ describe('BaseElement', () => {
                 expect(componentUnderTest.subElementSizeClass).toEqual(fakeSize);
             });
         });
+        // tslint:disable-next-line: max-line-length
         describe('GIVEN no value is passed in subElementSize input THEN subElementSizeClass should be undefined', () => {
             Given(() => {
                 componentUnderTest.subElementSize = undefined;
@@ -77,6 +80,7 @@ describe('BaseElement', () => {
                 expect(componentUnderTest.subElementSizeClass).toEqual(undefined);
             });
         });
+        // tslint:disable-next-line: max-line-length
         describe('GIVEN invalid value is passed in subElementSize input THEN subElementSizeClass should be undefined', () => {
             Given(() => {
                 componentUnderTest.subElementSize = 'Invalid size string';
@@ -120,6 +124,46 @@ describe('BaseElement', () => {
             });
             Then(() => {
                 expect(componentUnderTest.labelSizeClass).toEqual(undefined);
+            });
+        });
+    });
+    describe('INPUT: errorMessageSize', () => {
+        // tslint:disable-next-line: max-line-length
+        describe('GIVEN value passed in errorMessageSize input is 12|12|12|12 THEN set errorMessageSizeClass with xs size', () => {
+            Given(() => {
+                componentUnderTest.errorMessageSize = '12|12|12|12';
+                fakeSize = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
+            });
+            Then(() => {
+                expect(componentUnderTest.errorMessageSizeClass).toEqual(fakeSize);
+            });
+        });
+        // tslint:disable-next-line: max-line-length
+        describe('GIVEN value passed in errorMessageSize input is 12|12|12 THEN set errorMessageSizeClass without xs size', () => {
+            Given(() => {
+                componentUnderTest.errorMessageSize = '12|12|12';
+                fakeSize = 'col-lg-12 col-md-12 col-sm-12';
+            });
+            Then(() => {
+                expect(componentUnderTest.errorMessageSizeClass).toEqual(fakeSize);
+            });
+        });
+        // tslint:disable-next-line: max-line-length
+        describe('GIVEN no value is passed in errorMessageSize input THEN errorMessageSizeClass should be undefined', () => {
+            Given(() => {
+                componentUnderTest.errorMessageSize = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.errorMessageSizeClass).toEqual(undefined);
+            });
+        });
+        // tslint:disable-next-line: max-line-length
+        describe('GIVEN invalid value is passed in errorMessageSize input THEN errorMessageSizeClass should be undefined', () => {
+            Given(() => {
+                componentUnderTest.errorMessageSize = 'Invalid size string';
+            });
+            Then(() => {
+                expect(componentUnderTest.errorMessageSizeClass).toEqual(undefined);
             });
         });
     });

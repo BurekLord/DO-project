@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'do-input-error',
-  templateUrl: './input-error.component.html',
-  styleUrls: ['./input-error.component.scss']
+    selector: 'do-input-error',
+    templateUrl: './input-error.component.html',
+    styleUrls: ['./input-error.component.scss']
 })
-export class InputErrorComponent implements OnInit {
+export class InputErrorComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+    @Input() errorsLabel;
+    @Input() control;
 }

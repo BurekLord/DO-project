@@ -18,11 +18,18 @@ export class BaseElement {
             this.labelSizeClass = getClassFromSize(value);
         }
     }
+    @Input() set errorMessageSize(value: string) {
+        if (value) {
+            this.errorMessageSizeClass = getClassFromSize(value);
+        }
+    }
+
     @Input() disabled: boolean;
 
     sizeClass: string;
     subElementSizeClass: string;
     labelSizeClass: string;
+    errorMessageSizeClass: string;
 
     isDevMode: boolean;
 
