@@ -19,12 +19,40 @@ export enum BUTTON_TYPES {
     styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent extends BaseElement implements OnInit {
-    @Output() onClick: EventEmitter<boolean> = new EventEmitter();
+    @Output() onClick: EventEmitter<ButtonComponent> = new EventEmitter();
 
-    @Input() label: string;
-    @Input() customCss: string;
+    @Input()
+    set label(label: string) {
+        this.$label = label.trim();
+    }
+    get label() {
+        return this.$label;
+    }
+    $label = 'INSERT TITLE PROPERTY';
+
+    /**
+     * if added no default css is applied
+     */
+    @Input() customCssClass: string;
+    @Input() customCssStyle: string;
+
     @Input() type: BUTTON_TYPES;
+
+    /**
+     * removes focus css
+     */
     @Input() noFocusCss: boolean;
+
+    /**
+     * adds class="fa fa-{{icon}}" on the left side of the label
+     */
+    @Input() icon: string;
+    /**
+     *   class="fa fa-{{iconRight}}" on the right side of the label
+     */
+    @Input() iconRight: string;
+
+    @Input() disabled: boolean;
 
     btnType: string;
 
@@ -32,8 +60,11 @@ export class ButtonComponent extends BaseElement implements OnInit {
         this.setUpButtonType();
     }
 
+    /**
+     * sets BUTTON_TYPES.PRIMARY btn class if no customCss is added and no type is provided in input
+     */
     setUpButtonType() {
-        if (!this.customCss) {
+        if (this.noCustomCss()) {
             if (!this.type) {
                 this.btnType = this.getBtnTypeClass(BUTTON_TYPES.PRIMARY);
             } else {
@@ -42,14 +73,22 @@ export class ButtonComponent extends BaseElement implements OnInit {
         }
     }
 
-    buttonClicked() {
-        this.onClick.emit(true);
+    noCustomCss(): boolean {
+        return !this.customCssClass && !this.customCssStyle;
     }
+
+    buttonClicked() {
+        if (this.disabled) {
+            return;
+        }
+        this.onClick.emit(this);
+    }
+
 
     getBtnTypeClass(type: BUTTON_TYPES): string {
         if (type && Object.values(BUTTON_TYPES).includes(type)) {
             return `btn-${type}`;
-        } else {
+        } else if (this.isDevMode) {
             console.log(`%cInput proper btn type:` + `
     %cDANGER = 'danger',
     SUCCESS = 'success',
@@ -60,6 +99,8 @@ export class ButtonComponent extends BaseElement implements OnInit {
     LIGHT = 'light',
     DARK = 'dark',
     LINK = 'link'`, 'color: #FF3207', 'color: #12FF07');
+            return undefined;
+        } else {
             return undefined;
         }
     }

@@ -1,3 +1,4 @@
+import { isDevMode } from '@angular/core';
 export const sizeClassRegex = /^(([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9]))|(([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9]))$/;
 
 export function getClassFromSize(size: string): string {
@@ -23,12 +24,14 @@ export function getClassFromSize(size: string): string {
             }
         });
         return classString;
-    } else {
+    } else if (isDevMode()) {
         console.log(`%cInput proper size format:` + `
     %c"12|12|12|12" where 12 is a number from 1 to 12
     it will be replaced
     col-lg-12 col-md-12 col-sm-12 col-xs-12
     or "12|12|12" to omit col-xs-xx`, 'color: #FF3207', 'color: #12FF07');
+        return undefined;
+    } else {
         return undefined;
     }
 }

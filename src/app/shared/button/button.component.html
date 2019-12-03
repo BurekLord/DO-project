@@ -3,7 +3,17 @@
         <button
             class="{{btnType}} {{subElementSizeClass}} {{customCss}}"
             [ngClass]="{'no-focus': noFocusCss, 'btn': !customCss}"
+            [ngStyle]="customCssStyle"
             (click)="buttonClicked()"
-        >{{ label | translate }}</button>
+            [disabled]="disabled"
+        >
+            <span
+                class="fa fa-{{icon}}"
+                *ngIf="icon"
+            ></span>{{ $label | translate }}<span
+                class="fa fa-{{iconRight}}"
+                *ngIf="iconRight"
+            ></span>
+        </button>
     </div>
 </div>

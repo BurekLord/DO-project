@@ -19,6 +19,45 @@ describe('ButtonComponent', () => {
         fakeResult = undefined;
     });
 
+    describe('METHOD: noCustomCss', () => {
+        describe('GIVEN customCssClass and customCssStyle inputs are undefined THEN return true', () => {
+            Given(() => {
+                componentUnderTest.customCssClass = undefined;
+                componentUnderTest.customCssStyle = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.noCustomCss()).toBeTruthy();
+            });
+        });
+        describe('GIVEN customCssClass has value and customCssStyle is undefined THEN return false', () => {
+            Given(() => {
+                componentUnderTest.customCssClass = 'mock value';
+                componentUnderTest.customCssStyle = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.noCustomCss()).toBeFalsy();
+            });
+        });
+        describe('GIVEN customCssClass is undefined and customCssStyle has value THEN return false', () => {
+            Given(() => {
+                componentUnderTest.customCssClass = undefined;
+                componentUnderTest.customCssStyle = 'mock value';
+            });
+            Then(() => {
+                expect(componentUnderTest.noCustomCss()).toBeFalsy();
+            });
+        });
+        describe('GIVEN customCssClass and customCssStyle have value THEN return false', () => {
+            Given(() => {
+                componentUnderTest.customCssClass = 'mock value';
+                componentUnderTest.customCssStyle = 'mock value';
+            });
+            Then(() => {
+                expect(componentUnderTest.noCustomCss()).toBeFalsy();
+            });
+        });
+    });
+
     describe('METHOD: setUpButtonType', () => {
 
         When(() => {
@@ -28,7 +67,8 @@ describe('ButtonComponent', () => {
         describe('GIVEN there is no button type input THEN button type should be default', () => {
             Given(() => {
                 componentUnderTest.type = undefined;
-                componentUnderTest.customCss = undefined;
+                componentUnderTest.customCssClass = undefined;
+                componentUnderTest.customCssStyle = undefined;
                 fakeResult = 'btn-primary';
                 componentUnderTest.ngOnInit();
             });
@@ -57,7 +97,7 @@ describe('ButtonComponent', () => {
             componentUnderTest.buttonClicked();
         });
         Then(() => {
-            expect(componentUnderTest.onClick.emit).toHaveBeenCalledWith(true);
+            expect(componentUnderTest.onClick.emit).toHaveBeenCalledWith(componentUnderTest);
         });
     });
 
