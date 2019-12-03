@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { BaseElement } from '../core/base-element';
+import { BaseElement } from '../../core/base-element';
 
 export enum BUTTON_TYPES {
     DANGER = 'danger',
@@ -51,8 +51,6 @@ export class ButtonComponent extends BaseElement implements OnInit {
      *   class="fa fa-{{iconRight}}" on the right side of the label
      */
     @Input() iconRight: string;
-
-    @Input() disabled: boolean;
 
     btnType: string;
 

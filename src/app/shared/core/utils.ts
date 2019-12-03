@@ -1,6 +1,5 @@
 import { isDevMode } from '@angular/core';
 export const sizeClassRegex = /^(([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9]))|(([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9]))$/;
-
 export function getClassFromSize(size: string): string {
     if (size && size !== '' && size.match(sizeClassRegex)) {
         const splitSize: string[] = size.split('|');
@@ -33,6 +32,14 @@ export function getClassFromSize(size: string): string {
         return undefined;
     } else {
         return undefined;
+    }
+}
+
+export function log(text: string, objToLog?: any) {
+    if (isDevMode()) {
+        console.log(text, objToLog);
+    } else {
+        return;
     }
 }
 

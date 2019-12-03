@@ -18,10 +18,12 @@ export class BaseElement {
             this.labelSizeClass = getClassFromSize(value);
         }
     }
+    @Input() disabled: boolean;
 
     sizeClass: string;
     subElementSizeClass: string;
     labelSizeClass: string;
+
     isDevMode: boolean;
 
     constructor() {
