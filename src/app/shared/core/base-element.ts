@@ -1,5 +1,6 @@
 import { Input } from '@angular/core';
 import { getClassFromSize } from './utils';
+import { isDevMode } from '@angular/core';
 
 export class BaseElement {
     @Input() set size(value: string) {
@@ -17,7 +18,16 @@ export class BaseElement {
             this.labelSizeClass = getClassFromSize(value);
         }
     }
+    @Input() disabled: boolean;
+
     sizeClass: string;
     subElementSizeClass: string;
     labelSizeClass: string;
+
+    isDevMode: boolean;
+
+    constructor() {
+        this.isDevMode = isDevMode();
+    }
+
 }
