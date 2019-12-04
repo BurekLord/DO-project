@@ -26,6 +26,8 @@ export class BaseElement {
 
     @Input() disabled: boolean;
 
+    @Input() row = false;
+
     sizeClass: string;
     subElementSizeClass: string;
     labelSizeClass: string;
