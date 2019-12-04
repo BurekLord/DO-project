@@ -48,6 +48,4 @@ export class InputComponent extends BaseInputComponent {
         // TODO:
         return null;
     }
-
-
 }

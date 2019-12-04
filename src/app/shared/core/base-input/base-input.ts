@@ -42,7 +42,7 @@ export abstract class BaseInputComponent extends BaseElement implements ControlV
     id: string;
 
     @ViewChild('input', { static: true })
-    protected set input(input: ElementRef) {
+    set input(input: ElementRef) {
         this.$input = input;
         if (!input) { return; }
         this.input.nativeElement.onblur = () => {
@@ -51,7 +51,7 @@ export abstract class BaseInputComponent extends BaseElement implements ControlV
             }
         };
     }
-    protected get input() {
+    get input() {
         return this.$input;
     }
     protected $input: ElementRef;
