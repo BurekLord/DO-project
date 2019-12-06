@@ -17,6 +17,7 @@ describe('InputComponent', () => {
 
     describe('INIT: ', () => {
 
+
         When(() => {
             componentUnderTest.ngOnInitForChildren();
         });
@@ -65,6 +66,13 @@ describe('InputComponent', () => {
                 expect(componentUnderTest.extractInformationFromInternalInput(
                     { target: { value: fakeValue } }
                 )).toEqual(fakeValue);
+            });
+        });
+    });
+    describe('METHOD: validate', () => {
+        describe('GIVEN is called THEN return null', () => {
+            Then(() => {
+                expect(componentUnderTest.validate()).toEqual(null);
             });
         });
     });
