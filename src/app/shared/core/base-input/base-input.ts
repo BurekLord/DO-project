@@ -2,8 +2,9 @@ import { TooltipModel } from './../../models/tooltip.model';
 import { ErrorLabel } from '../../models/error-label.model';
 import { BaseElement, IBaseElement } from '../base-element';
 import { OnInit, Input, ElementRef, ViewChild } from '@angular/core';
-import { ControlValueAccessor, FormControl } from '@angular/forms';
+import { ControlValueAccessor, FormControl, AbstractControl } from '@angular/forms';
 import { log } from 'util';
+import { Subscription } from 'rxjs';
 
 /**
  * Intended to be extended by other components like Input, checkbox, radio etc...
@@ -52,6 +53,8 @@ export abstract class BaseInputComponent implements IBaseElement, ControlValueAc
 
     baseElementImpl: BaseElement;
 
+    subscriptions: Subscription[] = [];
+
     @ViewChild('input', { static: true })
     set input(input: ElementRef) {
         this.$input = input;
@@ -72,10 +75,38 @@ export abstract class BaseInputComponent implements IBaseElement, ControlValueAc
             log('Form Control is not defined!');
             return;
         }
-        this.baseElementImpl = new BaseElement(this.size, this.subElementSize, this.labelSize, this.errorMessageSize);
+        this.subscribeToFormControlValueChange(this.formControl);
+        this.setUpErrors(this.formControl);
 
+        this.baseElementImpl = new BaseElement(this.size, this.subElementSize, this.labelSize, this.errorMessageSize);
         this.ngOnInitForChildren();
     }
+
+    subscribeToFormControlValueChange(ctrl: AbstractControl) {
+        const sub = ctrl.valueChanges.subscribe(data => {
+            this.setUpErrors(ctrl);
+        });
+        this.subscriptions.push(sub);
+    }
+
+    setUpErrors(ctrl) {
+        const errorsToShow = [];
+        if (ctrl.errors) {
+            for (const key in ctrl.errors) {
+                if (key) {
+                    this.errorsLabel.forEach((el, index) => {
+                        if (el.errorName === key) {
+                            errorsToShow.push(index);
+                        }
+                    });
+                }
+            }
+        }
+        this.errorsLabel.forEach((el, index) => {
+            el.showed = errorsToShow.includes(index);
+        });
+    }
+
 
     registerOnChange(fn: any): void {
         this.onChangeCallBack = fn;

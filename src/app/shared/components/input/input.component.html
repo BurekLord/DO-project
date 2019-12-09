@@ -32,11 +32,8 @@
 
         </div>
         <div
-            class="{{ errorMessageSizeClass ? errorMessageSizeClass : subElementSizeClass }}">
-            <do-input-error
-                [errorsLabel]="errorsLabel"
-                [control]="formControl"
-            ></do-input-error>
+            class="flex-center {{ errorMessageSizeClass ? errorMessageSizeClass : subElementSizeClass }}">
+            <do-input-error [errorsLabel]="errorsLabel"></do-input-error>
         </div>
     </div>
 </div>

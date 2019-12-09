@@ -1,8 +1,7 @@
-<ng-container *ngFor="let item of errors; let last = last; let first = first">
-    {{item.checkFn(control)}}
+<ng-container *ngFor="let item of errors; let first = first; let first = first">
     <span
-        *ngIf="item.checkFn(control) && item.showed)"
+        *ngIf="item.showed"
         class="help-block--error"
-    >{{ item.message | translate: item.messageParams }}{{ last ? '' : ', ' }}
+    >{{first ? '' : ', '}}{{ item.message | translate: item.messageParams }}
     </span>
 </ng-container>
