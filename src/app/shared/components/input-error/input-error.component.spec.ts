@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { createSpyFromClass } from 'jasmine-auto-spies';
+import { TranslateService } from '@ngx-translate/core';
 import { InputErrorComponent } from './input-error.component';
+import { TestBed } from '@angular/core/testing';
 
 describe('InputErrorComponent', () => {
-  let component: InputErrorComponent;
-  let fixture: ComponentFixture<InputErrorComponent>;
+    let componentUnderTest: InputErrorComponent;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ InputErrorComponent ]
-    })
-    .compileComponents();
-  }));
+    Given(() => {
+        TestBed.configureTestingModule({
+            providers: [InputErrorComponent,
+                { provide: TranslateService, useValue: createSpyFromClass(TranslateService) }
+            ]
+        });
+        componentUnderTest = TestBed.get(InputErrorComponent);
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(InputErrorComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    describe('INIT: ', () => {
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+        Then(() => {
+            expect(componentUnderTest).toBeTruthy();
+        });
+    });
 });

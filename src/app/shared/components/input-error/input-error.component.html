@@ -1,1 +1,8 @@
-<p>input-error works!</p>
+<ng-container *ngFor="let item of errors; let last = last; let first = first">
+    {{item.checkFn(control)}}
+    <span
+        *ngIf="item.checkFn(control) && item.showed)"
+        class="help-block--error"
+    >{{ item.message | translate: item.messageParams }}{{ last ? '' : ', ' }}
+    </span>
+</ng-container>

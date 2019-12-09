@@ -1,4 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { ErrorLabel } from './../../models/error-label.model';
+import { Component, Input } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
     selector: 'do-input-error',
@@ -7,6 +10,20 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class InputErrorComponent {
 
-    @Input() errorsLabel;
-    @Input() control;
+    @Input() control: AbstractControl;
+    @Input() set errorsLabel(errors: ErrorLabel[]) {
+        if (errors) {
+            errors.forEach(error => {
+                for (const key in error.messageParams) {
+                    if (error.messageParams[key]) {
+                        error.messageParams[key] = this.translate.instant('' + error.messageParams[key]);
+                    }
+                }
+            });
+        }
+    }
+
+    errors: ErrorLabel[];
+
+    constructor(private translate: TranslateService) { }
 }
