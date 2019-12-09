@@ -1,12 +1,14 @@
+import { createSpyFromClass } from 'jasmine-auto-spies';
 import { PlaygroundComponent } from './playground.component';
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 describe('PlaygroundComponent', () => {
     let componentUnderTest: PlaygroundComponent;
 
     Given(() => {
         TestBed.configureTestingModule({
-            providers: [PlaygroundComponent]
+            providers: [PlaygroundComponent, { provide: Router, useValue: createSpyFromClass(Router) }]
         });
         componentUnderTest = TestBed.get(PlaygroundComponent);
     });

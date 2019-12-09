@@ -1,8 +1,8 @@
 import { createSpyFromClass } from 'jasmine-auto-spies';
-import { TranslateService } from '@ngx-translate/core';
 import { SharedModule } from './../../shared/shared.module';
 import { TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
+import { Router } from '@angular/router';
 
 
 describe('HomeComponent', () => {
@@ -10,8 +10,7 @@ describe('HomeComponent', () => {
 
     Given(() => {
         TestBed.configureTestingModule({
-            providers: [HomeComponent, { provide: TranslateService, useValue: createSpyFromClass(TranslateService) }],
-            imports: [SharedModule]
+            providers: [HomeComponent, { provide: Router, useValue: createSpyFromClass(Router) }],
         });
         componentUnderTest = TestBed.get(HomeComponent);
     });
