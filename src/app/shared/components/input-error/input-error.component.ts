@@ -1,8 +1,7 @@
 import { TranslateService } from '@ngx-translate/core';
 import { ErrorLabel } from './../../models/error-label.model';
-import { Component, Input, AfterViewInit, OnDestroy } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
-import { Subscription, Subject, merge, Observable } from 'rxjs';
+import { Component, Input, OnDestroy } from '@angular/core';
+import { Subscription, Subject } from 'rxjs';
 
 @Component({
     selector: 'do-input-error',
@@ -32,6 +31,7 @@ export class InputErrorComponent implements OnDestroy {
 
     translateErrorMessageParams(errors: ErrorLabel[]) {
         errors.forEach(error => {
+            error.message = error.message.charAt(0).toUpperCase() + error.message.slice(1);
             for (const key in error.messageParams) {
                 if (error.messageParams[key]) {
                     error.messageParams[key] = this.translate.instant('' + error.messageParams[key]);
