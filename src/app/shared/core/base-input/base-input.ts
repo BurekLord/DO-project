@@ -36,7 +36,9 @@ export abstract class BaseInputComponent implements IBaseElement, ControlValueAc
     }
     @Input() placeholderHidden = false;
     @Input() formControl = new FormControl();
+
     @Input() errorsLabel: Array<ErrorLabel>;
+
     @Input() tooltip: TooltipModel;
 
     label: string;
