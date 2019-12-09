@@ -96,7 +96,7 @@ export class ButtonComponent implements IBaseElement, OnInit {
     getBtnTypeClass(type: BUTTON_TYPES): string {
         if (type && Object.values(BUTTON_TYPES).includes(type)) {
             return `btn-${type}`;
-        } else if (this.baseElement.isDevMode) {
+        } else if (this.baseElementImpl.isDevMode) {
             console.log(`%cInput proper btn type:` + `
     %cDANGER = 'danger',
     SUCCESS = 'success',
