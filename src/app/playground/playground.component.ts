@@ -15,8 +15,9 @@ export class PlaygroundComponent {
     constructor(private router: Router) { }
 
     errorLabels = [
-        new ErrorLabel('maxlength', 'Must be shorter then 1', true, ''),
-        new ErrorLabel('pattern', 'Must a letter char', true, '')
+        new ErrorLabel('maxlength', 'Must be shorter then 1;', false, ''),
+        new ErrorLabel('pattern', 'Must a letter char;', false, ''),
+        new ErrorLabel('required', 'field is required;', false, '')
     ];
 
     navigateToHome() {

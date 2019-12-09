@@ -4,7 +4,15 @@
 }
 
 .has-error {
-    // TODO: write this class
+    .form-control {
+        
+        border: 1px solid rgba(255, 0, 0, .5);
+        border-bottom: 3px solid red;
+    }
+}
+
+.reserve-error-space {
+    min-height: 2rem;
 }
 
 .form-control {
