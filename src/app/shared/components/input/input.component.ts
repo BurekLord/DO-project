@@ -21,8 +21,6 @@ import { ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/for
 })
 export class InputComponent extends BaseInputComponent {
 
-    @Input() maxLength;
-
     constructor() {
         super();
     }
