@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { TestBed, fakeAsync } from '@angular/core/testing';
 import { ButtonComponent, BUTTON_TYPES } from './button.component';
+import { BaseElement } from '../../core/base-element';
 
 describe('ButtonComponent', () => {
 
@@ -102,6 +103,10 @@ describe('ButtonComponent', () => {
     });
 
     describe('METHOD: getBtnTypeClass', () => {
+        Given(() => {
+            componentUnderTest.baseElementImpl = new BaseElement();
+            componentUnderTest.baseElementImpl.isDevMode = true;
+        })
         describe('GIVEN method is called with valid data THEN return appropriate css class', () => {
             Given(() => {
                 fakeData = BUTTON_TYPES.SUCCESS;

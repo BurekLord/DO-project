@@ -5,165 +5,180 @@ describe('BaseElement', () => {
 
     let componentUnderTest: BaseElement;
     let fakeSize: string;
+    let fakeInput: string;
 
     Given(() => {
         TestBed.configureTestingModule({
-            providers: [BaseElement]
+            providers: [BaseElement, { provide: BaseElement, useValue: new BaseElement() }]
         });
         componentUnderTest = TestBed.get(BaseElement);
     });
 
-    describe('INPUT: size', () => {
-        describe('GIVEN value passed in size input is 12|12|12|12 THEN set sizeClass with xs size', () => {
+    describe('METHOD: setUpSizeClass', () => {
+        When(() => {
+            componentUnderTest.setUpSizeClass(fakeInput);
+        });
+
+        describe('GIVEN there is input THEN return proper class string', () => {
             Given(() => {
-                componentUnderTest.size = '12|12|12|12';
+                fakeInput = '12|12|12|12';
                 fakeSize = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
             });
             Then(() => {
                 expect(componentUnderTest.sizeClass).toEqual(fakeSize);
             });
         });
-        describe('GIVEN value passed in size input is 12|12|12 THEN set sizeClass without xs size', () => {
+        describe('GIVEN there is no input THEN return undefined', () => {
             Given(() => {
-                componentUnderTest.size = '12|12|12';
+                fakeInput = undefined;
+                fakeSize = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.sizeClass).toEqual(fakeSize);
+            });
+        });
+        describe('GIVEN there is bad input THEN return undefined', () => {
+            Given(() => {
+                fakeInput = 'asdad12|s12|s12|1as2';
+                fakeSize = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.sizeClass).toEqual(fakeSize);
+            });
+        });
+        describe('GIVEN there is short input THEN return proper class string without xs', () => {
+            Given(() => {
+                fakeInput = '12|12|12';
                 fakeSize = 'col-lg-12 col-md-12 col-sm-12';
             });
             Then(() => {
                 expect(componentUnderTest.sizeClass).toEqual(fakeSize);
             });
         });
-        describe('GIVEN no value is passed in size input THEN sizeClass should be undefined', () => {
-            Given(() => {
-                componentUnderTest.size = undefined;
-            });
-            Then(() => {
-                expect(componentUnderTest.sizeClass).toEqual(undefined);
-            });
-        });
-        describe('GIVEN invalid value is passed in size input THEN sizeClass should be undefined', () => {
-            Given(() => {
-                componentUnderTest.size = 'Invalid size string';
-            });
-            Then(() => {
-                expect(componentUnderTest.sizeClass).toEqual(undefined);
-            });
-        });
     });
+    describe('METHOD: setupSubElementSizeClass', () => {
+        When(() => {
+            componentUnderTest.setupSubElementSizeClass(fakeInput);
+        });
 
-    describe('INPUT: subElementSize', () => {
-        // tslint:disable-next-line: max-line-length
-        describe('GIVEN value passed in subElementSize input is 12|12|12|12 THEN set subElementSizeClass with xs size', () => {
+        describe('GIVEN there is input THEN return proper class string', () => {
             Given(() => {
-                componentUnderTest.subElementSize = '12|12|12|12';
+                fakeInput = '12|12|12|12';
                 fakeSize = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
             });
             Then(() => {
                 expect(componentUnderTest.subElementSizeClass).toEqual(fakeSize);
             });
         });
-        // tslint:disable-next-line: max-line-length
-        describe('GIVEN value passed in subElementSize input is 12|12|12 THEN set subElementSizeClass without xs size', () => {
+        describe('GIVEN there is no input THEN return undefined', () => {
             Given(() => {
-                componentUnderTest.subElementSize = '12|12|12';
+                fakeInput = undefined;
+                fakeSize = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.subElementSizeClass).toEqual(fakeSize);
+            });
+        });
+        describe('GIVEN there is bad input THEN return undefined', () => {
+            Given(() => {
+                fakeInput = 'asdad12|s12|s12|1as2';
+                fakeSize = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.subElementSizeClass).toEqual(fakeSize);
+            });
+        });
+        describe('GIVEN there is short input THEN return proper class string without xs', () => {
+            Given(() => {
+                fakeInput = '12|12|12';
                 fakeSize = 'col-lg-12 col-md-12 col-sm-12';
             });
             Then(() => {
                 expect(componentUnderTest.subElementSizeClass).toEqual(fakeSize);
             });
         });
-        // tslint:disable-next-line: max-line-length
-        describe('GIVEN no value is passed in subElementSize input THEN subElementSizeClass should be undefined', () => {
-            Given(() => {
-                componentUnderTest.subElementSize = undefined;
-            });
-            Then(() => {
-                expect(componentUnderTest.subElementSizeClass).toEqual(undefined);
-            });
-        });
-        // tslint:disable-next-line: max-line-length
-        describe('GIVEN invalid value is passed in subElementSize input THEN subElementSizeClass should be undefined', () => {
-            Given(() => {
-                componentUnderTest.subElementSize = 'Invalid size string';
-            });
-            Then(() => {
-                expect(componentUnderTest.subElementSizeClass).toEqual(undefined);
-            });
-        });
     });
+    describe('METHOD: setUpLabelSizeClass', () => {
+        When(() => {
+            componentUnderTest.setUpLabelSizeClass(fakeInput);
+        });
 
-    describe('INPUT: labelSize', () => {
-        describe('GIVEN value passed in labelSize input is 12|12|12|12 THEN set labelSizeClass with xs size', () => {
+        describe('GIVEN there is input THEN return proper class string', () => {
             Given(() => {
-                componentUnderTest.labelSize = '12|12|12|12';
+                fakeInput = '12|12|12|12';
                 fakeSize = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
             });
             Then(() => {
                 expect(componentUnderTest.labelSizeClass).toEqual(fakeSize);
             });
         });
-        describe('GIVEN value passed in labelSize input is 12|12|12 THEN set labelSizeClass without xs size', () => {
+        describe('GIVEN there is no input THEN return undefined', () => {
             Given(() => {
-                componentUnderTest.labelSize = '12|12|12';
-                fakeSize = 'col-lg-12 col-md-12 col-sm-12';
+                fakeInput = undefined;
+                fakeSize = undefined;
             });
             Then(() => {
                 expect(componentUnderTest.labelSizeClass).toEqual(fakeSize);
             });
         });
-        describe('GIVEN no value is passed in labelSize input THEN labelSizeClass should be undefined', () => {
+        describe('GIVEN there is bad input THEN return undefined', () => {
             Given(() => {
-                componentUnderTest.labelSize = undefined;
+                fakeInput = 'asdad12|s12|s12|1as2';
+                fakeSize = undefined;
             });
             Then(() => {
-                expect(componentUnderTest.labelSizeClass).toEqual(undefined);
+                expect(componentUnderTest.labelSizeClass).toEqual(fakeSize);
             });
         });
-        describe('GIVEN invalid value is passed in labelSize input THEN labelSizeClass should be undefined', () => {
+        describe('GIVEN there is short input THEN return proper class string without xs', () => {
             Given(() => {
-                componentUnderTest.labelSize = 'Invalid size string';
+                fakeInput = '12|12|12';
+                fakeSize = 'col-lg-12 col-md-12 col-sm-12';
             });
             Then(() => {
-                expect(componentUnderTest.labelSizeClass).toEqual(undefined);
+                expect(componentUnderTest.labelSizeClass).toEqual(fakeSize);
             });
         });
     });
-    describe('INPUT: errorMessageSize', () => {
-        // tslint:disable-next-line: max-line-length
-        describe('GIVEN value passed in errorMessageSize input is 12|12|12|12 THEN set errorMessageSizeClass with xs size', () => {
+    describe('METHOD: setUpErrorMessageSizeClass', () => {
+        When(() => {
+            componentUnderTest.setUpErrorMessageSizeClass(fakeInput);
+        });
+
+        describe('GIVEN there is input THEN return proper class string', () => {
             Given(() => {
-                componentUnderTest.errorMessageSize = '12|12|12|12';
+                fakeInput = '12|12|12|12';
                 fakeSize = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
             });
             Then(() => {
                 expect(componentUnderTest.errorMessageSizeClass).toEqual(fakeSize);
             });
         });
-        // tslint:disable-next-line: max-line-length
-        describe('GIVEN value passed in errorMessageSize input is 12|12|12 THEN set errorMessageSizeClass without xs size', () => {
+        describe('GIVEN there is no input THEN return undefined', () => {
             Given(() => {
-                componentUnderTest.errorMessageSize = '12|12|12';
-                fakeSize = 'col-lg-12 col-md-12 col-sm-12';
+                fakeInput = undefined;
+                fakeSize = undefined;
             });
             Then(() => {
                 expect(componentUnderTest.errorMessageSizeClass).toEqual(fakeSize);
             });
         });
-        // tslint:disable-next-line: max-line-length
-        describe('GIVEN no value is passed in errorMessageSize input THEN errorMessageSizeClass should be undefined', () => {
+        describe('GIVEN there is bad input THEN return undefined', () => {
             Given(() => {
-                componentUnderTest.errorMessageSize = undefined;
+                fakeInput = 'asdad12|s12|s12|1as2';
+                fakeSize = undefined;
             });
             Then(() => {
-                expect(componentUnderTest.errorMessageSizeClass).toEqual(undefined);
+                expect(componentUnderTest.errorMessageSizeClass).toEqual(fakeSize);
             });
         });
-        // tslint:disable-next-line: max-line-length
-        describe('GIVEN invalid value is passed in errorMessageSize input THEN errorMessageSizeClass should be undefined', () => {
+        describe('GIVEN there is short input THEN return proper class string without xs', () => {
             Given(() => {
-                componentUnderTest.errorMessageSize = 'Invalid size string';
+                fakeInput = '12|12|12';
+                fakeSize = 'col-lg-12 col-md-12 col-sm-12';
             });
             Then(() => {
-                expect(componentUnderTest.errorMessageSizeClass).toEqual(undefined);
+                expect(componentUnderTest.errorMessageSizeClass).toEqual(fakeSize);
             });
         });
     });

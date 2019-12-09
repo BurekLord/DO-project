@@ -1,3 +1,4 @@
+import { IBaseElement } from './../../core/base-element';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BaseElement } from '../../core/base-element';
 
@@ -18,7 +19,13 @@ export enum BUTTON_TYPES {
     templateUrl: './button.component.html',
     styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent extends BaseElement implements OnInit {
+export class ButtonComponent implements IBaseElement, OnInit {
+    @Input() size: string;
+    @Input() subElementSize: string;
+    @Input() labelSize: string;
+    @Input() errorMessageSize: string;
+    @Input() disabled: boolean;
+    @Input() row: boolean;
     @Output() onClick: EventEmitter<ButtonComponent> = new EventEmitter();
 
     @Input()
@@ -54,7 +61,10 @@ export class ButtonComponent extends BaseElement implements OnInit {
 
     btnType: string;
 
+    baseElementImpl: BaseElement;
+
     ngOnInit() {
+        this.baseElementImpl = new BaseElement(this.size, this.subElementSize, this.labelSize, this.errorMessageSize);
         this.setUpButtonType();
     }
 
@@ -86,7 +96,7 @@ export class ButtonComponent extends BaseElement implements OnInit {
     getBtnTypeClass(type: BUTTON_TYPES): string {
         if (type && Object.values(BUTTON_TYPES).includes(type)) {
             return `btn-${type}`;
-        } else if (this.isDevMode) {
+        } else if (this.baseElement.isDevMode) {
             console.log(`%cInput proper btn type:` + `
     %cDANGER = 'danger',
     SUCCESS = 'success',

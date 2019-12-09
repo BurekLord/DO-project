@@ -2,9 +2,9 @@
     class="no-gutters"
     [ngClass]="{'row': row}"
 >
-    <div class="do-button no-gutters {{sizeClass}}">
+    <div class="do-button no-gutters {{baseElement.sizeClass}}">
         <button
-            class="{{btnType}} {{subElementSizeClass}} {{customCss}}"
+            class="{{btnType}} {{baseElement.subElementSizeClass}} {{customCss}}"
             [ngClass]="{'no-focus': noFocusCss, 'btn': !customCss}"
             [ngStyle]="customCssStyle"
             (click)="buttonClicked()"
