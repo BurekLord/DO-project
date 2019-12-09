@@ -6,12 +6,17 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { SharedModule } from './shared/shared.module';
 import { PlaygroundComponent } from './playground/playground.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [AppComponent, HomeComponent, PlaygroundComponent],
     imports: [
         BrowserModule,
-        AppRoutingModule, SharedModule, AlertModule.forRoot()],
+        AppRoutingModule,
+        SharedModule,
+        AlertModule.forRoot(),
+        ReactiveFormsModule
+    ],
     providers: [],
     bootstrap: [AppComponent]
 })
