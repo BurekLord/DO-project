@@ -3,7 +3,7 @@
 !!!!!!!
 IMPLEMENTATION EXAMPLE:
 <div class="no-gutters">
-    <div class="no-gutters {{sizeClass}}">
+    <div class="no-gutters {{baseElement.sizeClass}}">
         <label
             class="control-label"
             for="{{id}}"
@@ -20,10 +20,5 @@ IMPLEMENTATION EXAMPLE:
             (keyup)="onChange($event)"
             [disabled]="disabled"
         />
-        <!-- <do-tooltip [tooltip]="tooltip"></do-tooltip>
-        <do-input-error
-            [errors-label]="errorsLabel"
-            [control]="formControl"
-        ></do-input-error> -->
     </div>
 </div>

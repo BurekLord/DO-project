@@ -3,31 +3,6 @@ import { getClassFromSize } from './utils';
 import { isDevMode } from '@angular/core';
 
 export class BaseElement {
-    @Input() set size(value: string) {
-        if (value) {
-            this.sizeClass = getClassFromSize(value);
-        }
-    }
-    @Input() set subElementSize(value: string) {
-        if (value) {
-            this.subElementSizeClass = getClassFromSize(value);
-        }
-    }
-    @Input() set labelSize(value: string) {
-        if (value) {
-            this.labelSizeClass = getClassFromSize(value);
-        }
-    }
-    @Input() set errorMessageSize(value: string) {
-        if (value) {
-            this.errorMessageSizeClass = getClassFromSize(value);
-        }
-    }
-
-    @Input() disabled: boolean;
-
-    @Input() row = false;
-
     sizeClass: string;
     subElementSizeClass: string;
     labelSizeClass: string;
@@ -35,8 +10,50 @@ export class BaseElement {
 
     isDevMode: boolean;
 
-    constructor() {
+    constructor(
+        public size?: string,
+        public subElementSize?: string,
+        public labelSize?: string,
+        public errorMessageSize?: string
+    ) {
+        this.setUpSizeClass(size);
+        this.setupSubElementSizeClass(subElementSize);
+        this.setUpLabelSizeClass(labelSize);
+        this.setUpErrorMessageSizeClass(errorMessageSize);
         this.isDevMode = isDevMode();
     }
 
+    setUpSizeClass(size: string) {
+        if (size) {
+            this.sizeClass = getClassFromSize(size);
+        }
+    }
+
+    setupSubElementSizeClass(subElementSize: string) {
+        if (subElementSize) {
+            this.subElementSizeClass = getClassFromSize(subElementSize);
+        }
+    }
+
+    setUpLabelSizeClass(labelSize: string) {
+        if (labelSize) {
+            this.labelSizeClass = getClassFromSize(labelSize);
+        }
+    }
+
+    setUpErrorMessageSizeClass(errorMessageSize: string) {
+        if (errorMessageSize) {
+            this.errorMessageSizeClass = getClassFromSize(errorMessageSize);
+        }
+    }
+}
+
+export interface IBaseElement {
+    size: string;
+    subElementSize: string;
+    labelSize: string;
+    errorMessageSize: string;
+    disabled: boolean;
+    row: boolean;
+    baseElementImpl: BaseElement;
 }

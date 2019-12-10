@@ -1,0 +1,16 @@
+<section>
+    <do-button
+        [label]="'Go to Home page'"
+        [size]="'12|12|12|12'"
+        (onClick)="navigateToHome()"
+        [subElementSize]="'12|12|12|12'"
+        [type]="danger"
+    ></do-button>
+    <do-input
+        size="12|12|12|12"
+        [label]="'Input Label'"
+        [placeholder]="'placeholder text'"
+        [formControl]="formControlTest"
+        [errorsLabel]="errorLabels"
+    ></do-input>
+</section>

@@ -4,9 +4,7 @@
 >
     <div
         class="no-gutters {{ sizeClass }}"
-        [ngClass]="{
-		'has-error':
-			!formControl.valid && !formControl.disabled && (formControl.dirty || formControl.touched)}"
+        [ngClass]="{'has-error': !formControl.valid && !formControl.disabled}"
     >
         <div class="{{ labelSizeClass }}">
             <label
@@ -28,16 +26,12 @@
                 (paste)="onChange($event)"
                 (keyup)="onChange($event)"
                 [disabled]="disabled"
-                [attr.maxlength]="maxlength"
             />
 
         </div>
         <div
-            class="{{ errorMessageSizeClass ? errorMessageSizeClass : subElementSizeClass }}">
-            <do-input-error
-                [errorsLabel]="errorsLabel"
-                [control]="formControl"
-            ></do-input-error>
+            class="flex-center reserve-error-space {{ errorMessageSizeClass ? errorMessageSizeClass : subElementSizeClass }}">
+            <do-input-error [errorsLabel]="errorsLabel"></do-input-error>
         </div>
     </div>
 </div>
