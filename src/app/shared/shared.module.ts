@@ -4,18 +4,20 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ButtonComponent } from './components/button/button.component';
-import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { InputErrorComponent } from './components/input-error/input-error.component';
 import { InputComponent } from './components/input/input.component';
+import { PopoverModule } from 'ngx-bootstrap/popover';
+import { TooltipComponent } from './components/tooltip/tooltip.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-    declarations: [ButtonComponent, TooltipComponent, InputErrorComponent, InputComponent],
+    declarations: [ButtonComponent, InputErrorComponent, InputComponent, TooltipComponent],
     imports: [
         CommonModule,
+        PopoverModule.forRoot(),
         HttpClientModule,
         TranslateModule.forRoot({
             loader: {
@@ -25,6 +27,6 @@ export function HttpLoaderFactory(http: HttpClient) {
             }
         }),
     ],
-    exports: [ButtonComponent, TooltipComponent, InputErrorComponent, InputComponent]
+    exports: [ButtonComponent, InputErrorComponent, InputComponent]
 })
 export class SharedModule { }

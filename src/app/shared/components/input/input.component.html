@@ -1,21 +1,24 @@
 <div
+    id="input-container"
     class="no-gutters"
     [ngClass]="{'row': row}"
 >
     <div
-        class="no-gutters {{ sizeClass }}"
+        style="position: relative;"
+        class="no-gutters {{ baseElementImpl.sizeClass }}"
         [ngClass]="{'has-error': !formControl.valid && !formControl.disabled}"
     >
-        <div class="{{ labelSizeClass }}">
+        <div class="{{ baseElementImpl.labelSizeClass }}">
             <label
                 class="form-control-label"
                 for="{{ id }}"
             >
                 {{label | translate}}</label>
-            <do-tooltip [tooltip]="tooltip"></do-tooltip>
         </div>
 
-        <div class="{{ subElementSizeClass }}">
+        <do-tooltip [tooltip]="tooltip"></do-tooltip>
+
+        <div class="{{ baseElementImpl.subElementSizeClass }}">
             <input
                 #input
                 id="{{id}}"
@@ -30,7 +33,7 @@
 
         </div>
         <div
-            class="flex-center reserve-error-space {{ errorMessageSizeClass ? errorMessageSizeClass : subElementSizeClass }}">
+            class="flex-center reserve-error-space {{ baseElementImpl.errorMessageSizeClass ? baseElementImpl.errorMessageSizeClass : baseElementImpl.subElementSizeClass }}">
             <do-input-error [errorsLabel]="errorsLabel"></do-input-error>
         </div>
     </div>

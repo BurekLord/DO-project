@@ -1,1 +1,20 @@
-<p>tooltip works!</p>
+<div
+    popover="{{tooltip.popover}}"
+    popoverTitle="{{tooltip.popoverTitle}}"
+    placement="{{tooltip.placement}}"
+    triggers="{{tooltip.triggers}}"
+    outsideClick="{{tooltip.outsideClick}}"
+    container="{{tooltip.container}}"
+    containerClass="{{tooltip.containerClass}}"
+    (onShown)="tooltip.onPopupShown"
+    (onHidden)="tooltip.onHidden"
+    style="position: absolute;
+    top: 0;
+    right: 0;"
+>
+    <img
+        style="width: 1.5rem;"
+        src="../../../../assets/icons/info.svg"
+        alt="Information icon"
+    >
+</div>
