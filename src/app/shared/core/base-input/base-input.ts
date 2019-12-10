@@ -17,6 +17,7 @@ export abstract class BaseInputComponent implements IBaseElement, ControlValueAc
     @Input() labelSize: string;
     @Input() errorMessageSize: string;
     @Input() disabled: boolean;
+    @Input() tooltip: TooltipModel;
     @Input() row = false;
 
     @Input('label') set $label(value: string) {
@@ -39,8 +40,6 @@ export abstract class BaseInputComponent implements IBaseElement, ControlValueAc
     @Input() formControl = new FormControl();
 
     @Input() errorsLabel: Array<ErrorLabel>;
-
-    @Input() tooltip: TooltipModel;
 
     label: string;
     placeholder: string;

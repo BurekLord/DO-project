@@ -1,3 +1,4 @@
+import { TooltipModel } from './../../models/tooltip.model';
 import { IBaseElement } from './../../core/base-element';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BaseElement } from '../../core/base-element';
@@ -25,6 +26,7 @@ export class ButtonComponent implements IBaseElement, OnInit {
     @Input() labelSize: string;
     @Input() errorMessageSize: string;
     @Input() disabled: boolean;
+    @Input() tooltip: TooltipModel;
     @Input() row: boolean;
     @Output() onClick: EventEmitter<ButtonComponent> = new EventEmitter();
 

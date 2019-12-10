@@ -1,3 +1,4 @@
+import { TooltipModel } from './../models/tooltip.model';
 import { Input } from '@angular/core';
 import { getClassFromSize } from './utils';
 import { isDevMode } from '@angular/core';
@@ -55,5 +56,6 @@ export interface IBaseElement {
     errorMessageSize: string;
     disabled: boolean;
     row: boolean;
+    tooltip: TooltipModel;
     baseElementImpl: BaseElement;
 }

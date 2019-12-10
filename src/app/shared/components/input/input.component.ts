@@ -1,4 +1,4 @@
-import { Component, OnInit, forwardRef, Input } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { BaseInputComponent } from '../../core/base-input/base-input';
 import { ValidationErrors, NG_VALUE_ACCESSOR, NG_VALIDATORS } from '@angular/forms';
 

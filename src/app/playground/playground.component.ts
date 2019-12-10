@@ -1,3 +1,4 @@
+import { TooltipModel } from './../shared/models/tooltip.model';
 import { ErrorLabel } from './../shared/models/error-label.model';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
@@ -19,6 +20,8 @@ export class PlaygroundComponent {
         new ErrorLabel('pattern', 'Must a letter char;', false, ''),
         new ErrorLabel('required', 'field is required;', false, '')
     ];
+
+    tooltip = new TooltipModel('tooltip content', 'tooltip title');
 
     navigateToHome() {
         this.router.navigate(['']);
