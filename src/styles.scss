@@ -1,3 +1,19 @@
+// Import Custom Variables
+@import "./assets/scss/variables.scss";
+
+// Import Bootstrap
+@import "./assets/scss/bootstrap/scss/bootstrap.scss";
+
+// Import Custom SCSS
+@import "./assets/scss/mixins.scss";
+@import "./assets/scss/global.scss";
+@import "./assets/scss/utilities.scss";
+@import "./assets/scss/navbar.scss";
+@import "./assets/scss/cards.scss";
+@import "./assets/scss/login.scss";
+@import "./assets/scss/footer.scss";
+
+
 /* You can add global styles to this file, and also import other style files */
 .no-focus {
     box-shadow: none !important;

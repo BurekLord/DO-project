@@ -12,7 +12,8 @@ export enum BUTTON_TYPES {
     WARNING = 'warning',
     LIGHT = 'light',
     DARK = 'dark',
-    LINK = 'link'
+    LINK = 'link',
+    ICON = 'icon',
 }
 
 @Component({

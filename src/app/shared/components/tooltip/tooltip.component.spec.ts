@@ -3,23 +3,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TooltipComponent } from './tooltip.component';
 
 describe('TooltipComponent', () => {
-  let component: TooltipComponent;
-  let fixture: ComponentFixture<TooltipComponent>;
+    let componentUnderTest: TooltipComponent;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TooltipComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            providers: [TooltipComponent]
+        });
+        componentUnderTest = TestBed.get(TooltipComponent);
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TooltipComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(componentUnderTest).toBeTruthy();
+    });
 });
