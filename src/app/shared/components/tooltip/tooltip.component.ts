@@ -6,5 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
     styleUrls: ['./tooltip.component.scss']
 })
 export class TooltipComponent {
+
     @Input() tooltip;
+
 }
