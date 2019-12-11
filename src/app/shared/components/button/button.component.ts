@@ -38,13 +38,11 @@ export class ButtonComponent implements IBaseElement, OnInit {
     get label() {
         return this.$label;
     }
-    $label = 'INSERT TITLE PROPERTY';
+    $label: string;
 
-    /**
-     * if added no default css is applied
-     */
-    @Input() customCssClass: string;
     @Input() customCssStyle: string;
+    @Input() iconRightColor: string;
+    @Input() iconColor: string;
 
     @Input() type: BUTTON_TYPES;
 
@@ -75,17 +73,11 @@ export class ButtonComponent implements IBaseElement, OnInit {
      * sets BUTTON_TYPES.PRIMARY btn class if no customCss is added and no type is provided in input
      */
     setUpButtonType() {
-        if (this.noCustomCss()) {
-            if (!this.type) {
-                this.btnType = this.getBtnTypeClass(BUTTON_TYPES.PRIMARY);
-            } else {
-                this.btnType = this.getBtnTypeClass(this.type);
-            }
+        if (!this.type) {
+            this.btnType = this.getBtnTypeClass(BUTTON_TYPES.PRIMARY);
+        } else {
+            this.btnType = this.getBtnTypeClass(this.type);
         }
-    }
-
-    noCustomCss(): boolean {
-        return !this.customCssClass && !this.customCssStyle;
     }
 
     buttonClicked() {
@@ -98,6 +90,9 @@ export class ButtonComponent implements IBaseElement, OnInit {
 
     getBtnTypeClass(type: BUTTON_TYPES): string {
         if (type && Object.values(BUTTON_TYPES).includes(type)) {
+            if (type === BUTTON_TYPES.ICON) {
+                return;
+            }
             return `btn-${type}`;
         } else if (this.baseElementImpl.isDevMode) {
             console.log(`%cInput proper btn type:` + `

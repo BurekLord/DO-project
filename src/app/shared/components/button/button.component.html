@@ -4,19 +4,23 @@
 >
     <div class="do-button no-gutters {{baseElementImpl.sizeClass}}">
         <button
-            class="{{btnType}} {{baseElementImpl.subElementSizeClass}} {{customCss}}"
+            class="{{btnType}} {{baseElementImpl.subElementSizeClass}} {{customCssClass}}"
             [ngClass]="{'no-focus': noFocusCss, 'btn': !customCss}"
             [ngStyle]="customCssStyle"
             (click)="buttonClicked()"
             [disabled]="disabled"
         >
-            <span
+            <em
                 class="fa fa-{{icon}}"
                 *ngIf="icon"
-            ></span>{{ $label | translate }}<span
+                [ngStyle]="{color: iconColor}"
+            ></em>
+            {{ $label | translate }}
+            <em
                 class="fa fa-{{iconRight}}"
                 *ngIf="iconRight"
-            ></span>
+                [ngStyle]="{color: iconRightColor}"
+            ></em>
         </button>
     </div>
 </div>

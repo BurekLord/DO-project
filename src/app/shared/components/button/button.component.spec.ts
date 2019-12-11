@@ -106,7 +106,7 @@ describe('ButtonComponent', () => {
         Given(() => {
             componentUnderTest.baseElementImpl = new BaseElement();
             componentUnderTest.baseElementImpl.isDevMode = true;
-        })
+        });
         describe('GIVEN method is called with valid data THEN return appropriate css class', () => {
             Given(() => {
                 fakeData = BUTTON_TYPES.SUCCESS;
@@ -128,6 +128,15 @@ describe('ButtonComponent', () => {
         describe('GIVEN method is called without data THEN return undefined', () => {
             Given(() => {
                 fakeData = undefined;
+                fakeResult = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.getBtnTypeClass(fakeData)).toEqual(fakeResult);
+            });
+        });
+        describe('GIVEN method is called with type icon THEN return', () => {
+            Given(() => {
+                fakeData = BUTTON_TYPES.ICON;
                 fakeResult = undefined;
             });
             Then(() => {
