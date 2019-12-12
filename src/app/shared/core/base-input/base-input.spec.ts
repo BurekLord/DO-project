@@ -41,21 +41,6 @@ describe('BaseInputComponent', () => {
             expect(componentUnderTest).toBeTruthy();
         });
     });
-    describe('METHOD: ngOnInit', () => {
-        When(() => {
-            componentUnderTest.ngOnInit();
-        });
-
-        describe('GIVEN formControl is null THEN return', () => {
-            Given(() => {
-                componentUnderTest.formControl = null;
-            });
-            Then(() => {
-                // TODO: bad test. fix it. how do we know that the method after return is called or not
-                expect(componentUnderTest.ngOnInit()).toEqual(undefined);
-            });
-        });
-    });
     describe('METHOD: registerOnChange', () => {
         When(() => {
             componentUnderTest.registerOnChange(fakeFunction);

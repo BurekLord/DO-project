@@ -2,7 +2,7 @@ import { Observer, Observable, Subscription } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { filter, share, map } from 'rxjs/operators';
 
-interface Event<T> {
+export interface Event<T> {
     name: string;
     payload: T;
 }
@@ -19,7 +19,7 @@ export class EventHub {
         }).pipe(share());
     }
 
-    broadcast(event: Event<any> | string): void {
+    broadcast(event: Event<any> | string) {
         if (this.observer) {
             this.observer.next(event);
         }

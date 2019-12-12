@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { EventHub } from 'src/app/shared/services/event-brodcast.servoce';
+import { Component } from '@angular/core';
+import { EventHub } from 'src/app/shared/services/event-broadcast.service';
 import { Router } from '@angular/router';
 
 @Component({
