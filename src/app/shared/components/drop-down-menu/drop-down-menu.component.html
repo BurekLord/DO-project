@@ -8,7 +8,12 @@
         [routerLink]="['/', item.link]"
         routerLinkActive="router-link-active"
         *ngFor="let item of items"
-    >{{item.label}}</div>
-    <!-- TODO: implement this -->
-    <!-- <div class="dropdown-divider"></div> -->
+    >
+        {{item.label}}
+        <div
+            *ngIf="item.brakeNext"
+            class="dropdown-divider"
+        ></div>
+    </div>
+
 </div>

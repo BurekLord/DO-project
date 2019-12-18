@@ -14,19 +14,8 @@ describe('DropDownMenuComponent', () => {
 
     describe('INIT: ', () => {
 
-        When(() => {
-            // TODO:
-        });
-
-        describe('GIVEN  THEN ', () => {
-
-            Given(() => {
-                // TODO:
-            });
-
-            Then(() => {
-                // TODO:
-            });
+        Then(() => {
+            expect(componentUnderTest.$show).toBeFalsy();
         });
     });
 });
