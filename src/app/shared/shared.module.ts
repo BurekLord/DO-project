@@ -8,13 +8,14 @@ import { InputErrorComponent } from './components/input-error/input-error.compon
 import { InputComponent } from './components/input/input.component';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
+import { InputSearchComponent } from './components/input-search/input-search.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-    declarations: [ButtonComponent, InputErrorComponent, InputComponent, TooltipComponent],
+    declarations: [ButtonComponent, InputErrorComponent, InputComponent, TooltipComponent, InputSearchComponent],
     imports: [
         CommonModule,
         PopoverModule.forRoot(),
