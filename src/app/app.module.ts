@@ -17,7 +17,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
         SharedModule,
         AlertModule.forRoot(),
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

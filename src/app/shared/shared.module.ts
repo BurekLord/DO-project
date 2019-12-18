@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -9,13 +10,21 @@ import { InputComponent } from './components/input/input.component';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { InputSearchComponent } from './components/input-search/input-search.component';
+import { DropDownMenuComponent } from './components/drop-down-menu/drop-down-menu.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
 }
 
 @NgModule({
-    declarations: [ButtonComponent, InputErrorComponent, InputComponent, TooltipComponent, InputSearchComponent],
+    declarations: [
+        ButtonComponent,
+        InputErrorComponent,
+        InputComponent,
+        TooltipComponent,
+        InputSearchComponent,
+        DropDownMenuComponent
+    ],
     imports: [
         CommonModule,
         PopoverModule.forRoot(),
@@ -27,7 +36,15 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
+        RouterModule
     ],
-    exports: [ButtonComponent, InputErrorComponent, InputComponent]
+    exports: [
+        ButtonComponent,
+        InputErrorComponent,
+        InputComponent,
+        InputSearchComponent,
+        DropDownMenuComponent,
+        RouterModule
+    ]
 })
 export class SharedModule { }

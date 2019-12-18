@@ -71,4 +71,56 @@ describe('NavbarComponent', () => {
             });
         });
     });
+
+    describe('METHOD: ngOnInit', () => {
+        When(() => {
+            componentUnderTest.ngOnInit();
+        });
+
+        describe('GIVEN method is called THEN set variables', () => {
+            Then(() => {
+                expect(componentUnderTest.showBellDropDown).toEqual(false);
+                expect(componentUnderTest.showEnvelopeDropDown).toEqual(false);
+                expect(componentUnderTest.showUserDropDown).toEqual(false);
+                expect(componentUnderTest.userDropItems.length).toBeGreaterThan(0);
+            });
+        });
+    });
+
+    describe('METHOD: toggleDropDown', () => {
+        When(() => {
+            componentUnderTest.toggleDropDown(fakeValue);
+        });
+
+        describe('GIVEN it is called with "bell" THEN showBellDropDown is all other are false', () => {
+            Given(() => {
+                fakeValue = 'bell';
+            });
+            Then(() => {
+                expect(componentUnderTest.showBellDropDown).toBeTruthy();
+                expect(componentUnderTest.showEnvelopeDropDown).toBeFalsy();
+                expect(componentUnderTest.showUserDropDown).toBeFalsy();
+            });
+        });
+        describe('GIVEN it is called with "envelope" THEN showBellDropDown is all other are false', () => {
+            Given(() => {
+                fakeValue = 'envelope';
+            });
+            Then(() => {
+                expect(componentUnderTest.showBellDropDown).toBeFalsy();
+                expect(componentUnderTest.showEnvelopeDropDown).toBeTruthy();
+                expect(componentUnderTest.showUserDropDown).toBeFalsy();
+            });
+        });
+        describe('GIVEN it is called with "user" THEN showBellDropDown is all other are false', () => {
+            Given(() => {
+                fakeValue = 'user';
+            });
+            Then(() => {
+                expect(componentUnderTest.showBellDropDown).toBeFalsy();
+                expect(componentUnderTest.showEnvelopeDropDown).toBeFalsy();
+                expect(componentUnderTest.showUserDropDown).toBeTruthy();
+            });
+        });
+    });
 });
