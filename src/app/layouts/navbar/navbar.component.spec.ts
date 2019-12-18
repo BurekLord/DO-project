@@ -1,5 +1,5 @@
 import { createSpyFromClass, Spy } from 'jasmine-auto-spies';
-import { EventHub } from './../../shared/services/event-broadcast.service';
+import { EventHub } from '../../shared/services/event-broadcast.service';
 import { NavbarComponent } from './navbar.component';
 
 import { TestBed } from '@angular/core/testing';
