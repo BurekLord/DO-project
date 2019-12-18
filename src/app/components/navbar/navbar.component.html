@@ -18,7 +18,7 @@
     >
         <div class="input-group">
             <input
-                type="text"
+                #input
                 class="form-control"
                 placeholder="Search for..."
                 aria-label="Search"
@@ -28,6 +28,7 @@
                 <button
                     class="btn btn-primary"
                     type="button"
+                    (click)="search(input.value)"
                 >
                     <i class="fas fa-search"></i>
                 </button>

@@ -10,6 +10,7 @@ describe('NavbarComponent', () => {
     let expectedValue: any;
     let eventHubSpy: Spy<EventHub>;
     let actualValue: any;
+    let fakeValue: any;
 
     Given(() => {
         TestBed.configureTestingModule({
@@ -41,6 +42,32 @@ describe('NavbarComponent', () => {
                     actualValue = res;
                     expect(actualValue).toEqual(expectedValue);
                 });
+            });
+        });
+    });
+
+    describe('METHOD: search', () => {
+        When(() => {
+            componentUnderTest.search(fakeValue);
+        });
+
+        describe('GIVEN there is value THEN search var should update', () => {
+            Given(() => {
+                fakeValue = 'fake value';
+            });
+            Then(() => {
+                expect(componentUnderTest.searchValue).toEqual(fakeValue);
+            });
+        });
+        describe('GIVEN there is no value THEN search var be undefined', () => {
+            When(() => {
+                componentUnderTest.search(fakeValue);
+            });
+            Given(() => {
+                fakeValue = undefined;
+            });
+            Then(() => {
+                expect(componentUnderTest.searchValue).toEqual(fakeValue);
             });
         });
     });

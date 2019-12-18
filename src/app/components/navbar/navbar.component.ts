@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+    searchValue: string;
 
     constructor(private eventHub: EventHub, private router: Router) { }
 
@@ -22,6 +23,8 @@ export class NavbarComponent {
         //   });
     }
 
-
-
+    search(value: string) {
+        // TODO: define what we can search and how
+        this.searchValue = value;
+    }
 }
