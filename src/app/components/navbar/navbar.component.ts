@@ -55,11 +55,6 @@ export class NavbarComponent implements OnInit {
         //   });
     }
 
-    search(value: string) {
-        // TODO: define what we can search and how
-        this.searchValue = value;
-    }
-
     toggleDropDown(value: string) {
         if (value === 'bell' && !this.showBellDropDown) {
             this.showBellDropDown = true;
