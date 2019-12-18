@@ -21,12 +21,16 @@ export class NavbarComponent implements OnInit {
     userDropItems: DropDownItem[];
     showUserDropDown: boolean;
 
+    title: string;
+
     constructor(private eventHub: EventHub, private router: Router) { }
 
     ngOnInit() {
         this.showBellDropDown = false;
         this.showEnvelopeDropDown = false;
         this.showUserDropDown = false;
+
+        this.title = 'Don`t think... Do!';
 
         // TODO: get all notifications
         // this.bellDropItems = bell notifications
@@ -62,18 +66,24 @@ export class NavbarComponent implements OnInit {
             this.showEnvelopeDropDown = false;
             this.showUserDropDown = false;
             return;
+        } else {
+            this.showBellDropDown = false;
         }
         if (value === 'envelope' && !this.showEnvelopeDropDown) {
             this.showBellDropDown = false;
             this.showEnvelopeDropDown = true;
             this.showUserDropDown = false;
             return;
+        } else {
+            this.showEnvelopeDropDown = false;
         }
         if (value === 'user' && !this.showUserDropDown) {
             this.showBellDropDown = false;
             this.showEnvelopeDropDown = false;
             this.showUserDropDown = true;
             return;
+        } else {
+            this.showUserDropDown = false;
         }
     }
 

@@ -2,8 +2,8 @@
 
     <a
         class="navbar-brand mr-1"
-        href=""
-    >Start Bootstrap</a>
+        [routerLink]="['/home']"
+    >{{title}}</a>
 
     <do-button
         [icon]="'bars'"
@@ -37,13 +37,12 @@
         </div>
     </form>
 
-
     <div class="do-nav-items">
-
         <do-button
             [icon]="'bell'"
             [type]="'icon'"
             [iconColor]="'rgba(255,255,255,.5)'"
+            [notifications]="bellDropItems?.length"
             (onClick)="toggleDropDown('bell')"
         ></do-button>
         <do-drop-down-menu
@@ -54,6 +53,7 @@
             [icon]="'envelope'"
             [type]="'icon'"
             [iconColor]="'rgba(255,255,255,.5)'"
+            [notifications]="envelopeDropItems?.length"
             (onClick)="toggleDropDown('envelope')"
         ></do-button>
         <do-drop-down-menu
@@ -70,6 +70,5 @@
             [items]="userDropItems"
             [show]="showUserDropDown"
         ></do-drop-down-menu>
-
     </div>
 </nav>

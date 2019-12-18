@@ -82,6 +82,7 @@ describe('NavbarComponent', () => {
                 expect(componentUnderTest.showBellDropDown).toEqual(false);
                 expect(componentUnderTest.showEnvelopeDropDown).toEqual(false);
                 expect(componentUnderTest.showUserDropDown).toEqual(false);
+                expect(componentUnderTest.title).toBeTruthy();
                 expect(componentUnderTest.userDropItems.length).toBeGreaterThan(0);
             });
         });

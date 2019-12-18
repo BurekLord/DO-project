@@ -1,5 +1,6 @@
 <div
     class="no-gutters"
+    style="position: relative;"
     [ngClass]="{'row': row}"
 >
     <div class="do-button no-gutters {{baseElementImpl.sizeClass}}">
@@ -23,4 +24,5 @@
             ></em>
         </button>
     </div>
+    <span class="badge badge-danger do-badge">{{notifications}}</span>
 </div>

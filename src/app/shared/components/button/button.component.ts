@@ -60,6 +60,8 @@ export class ButtonComponent implements IBaseElement, OnInit {
      */
     @Input() iconRight: string;
 
+    @Input() notifications: number;
+
     btnType: string;
 
     baseElementImpl: BaseElement;
