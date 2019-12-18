@@ -13,6 +13,7 @@ export class NavbarComponent {
 
     toggleSideBar() {
         this.eventHub.broadcast('toggleSideBar');
+        // TODO: remove old code
         // Toggle the side navigation
         //   $("#sidebarToggle").on('click', function(e) {
         //     e.preventDefault();
