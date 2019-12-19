@@ -10,8 +10,4 @@ export class HomeComponent {
 
     constructor(private router: Router) { }
 
-    toPlayground() {
-        this.router.navigate(['/playground']);
-    }
-
 }

@@ -99,7 +99,7 @@ describe('NavbarComponent', () => {
         });
         describe('GIVEN it is called with "hideAll" THEN all are false', () => {
             Given(() => {
-                fakeValue = 'user';
+                fakeValue = 'hideAll';
             });
             Then(() => {
                 expect(componentUnderTest.showBellDropDown).toBeFalsy();
