@@ -1,1 +1,16 @@
-<p>card works!</p>
+<div class="card mb-3">
+    <div
+        class="card-header"
+        *ngIf="card?.headerIcon || card?.header"
+    >
+        <i class="fas fa-{{card?.headerIcon}}"></i>
+        {{card?.header}}</div>
+    <div class="card-body">
+        <ng-content></ng-content>
+    </div>
+    <div
+        *ngIf="card?.footer"
+        class="card-footer small text-muted"
+    >{{card?.footer}}
+    </div>
+</div>
