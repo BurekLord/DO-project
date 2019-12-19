@@ -97,5 +97,15 @@ describe('NavbarComponent', () => {
                 expect(componentUnderTest.showUserDropDown).toBeTruthy();
             });
         });
+        describe('GIVEN it is called with "hideAll" THEN all are false', () => {
+            Given(() => {
+                fakeValue = 'user';
+            });
+            Then(() => {
+                expect(componentUnderTest.showBellDropDown).toBeFalsy();
+                expect(componentUnderTest.showEnvelopeDropDown).toBeFalsy();
+                expect(componentUnderTest.showUserDropDown).toBeFalsy();
+            });
+        });
     });
 });

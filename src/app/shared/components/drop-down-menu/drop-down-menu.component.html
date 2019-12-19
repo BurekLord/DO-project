@@ -8,6 +8,7 @@
         [routerLink]="['/', item.link]"
         routerLinkActive="router-link-active"
         *ngFor="let item of items"
+        (click)="hide.emit(true)"
     >
         {{item.label}}
         <div
@@ -15,5 +16,9 @@
             class="dropdown-divider"
         ></div>
     </div>
-
 </div>
+<div
+    *ngIf="$show && items && items.length > 0"
+    class="drop-down-menu-backdrop"
+    (click)="hide.emit(true)"
+></div>

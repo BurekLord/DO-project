@@ -56,6 +56,12 @@ export class NavbarComponent implements OnInit {
     }
 
     toggleDropDown(value: string) {
+        if (value === 'hideAll') {
+            this.showBellDropDown = false;
+            this.showEnvelopeDropDown = false;
+            this.showUserDropDown = false;
+            return;
+        }
         if (value === 'bell' && !this.showBellDropDown) {
             this.showBellDropDown = true;
             this.showEnvelopeDropDown = false;

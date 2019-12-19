@@ -48,6 +48,7 @@
         <do-drop-down-menu
             [items]="bellDropItems"
             [show]="showBellDropDown"
+            (hide)="toggleDropDown('hideAll')"
         ></do-drop-down-menu>
         <do-button
             [icon]="'envelope'"
@@ -59,6 +60,7 @@
         <do-drop-down-menu
             [items]="envelopeDropItems"
             [show]="showEnvelopeDropDown"
+            (hide)="toggleDropDown('hideAll')"
         ></do-drop-down-menu>
         <do-button
             [icon]="'user-circle'"
@@ -69,6 +71,7 @@
         <do-drop-down-menu
             [items]="userDropItems"
             [show]="showUserDropDown"
+            (hide)="toggleDropDown('hideAll')"
         ></do-drop-down-menu>
     </div>
 </nav>

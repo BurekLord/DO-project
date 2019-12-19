@@ -1,5 +1,5 @@
 import { DropDownItem } from './../../models/drop-down-item';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'do-drop-down-menu',
@@ -17,6 +17,7 @@ export class DropDownMenuComponent {
         } else {
             this.$show = false;
         }
-    };
+    }
+    @Output() hide: EventEmitter<boolean> = new EventEmitter();
 
 }
