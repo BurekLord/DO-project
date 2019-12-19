@@ -14,4 +14,13 @@
         [errorsLabel]="errorLabels"
         [tooltip]="tooltip"
     ></do-input>
+
+    <do-card
+        [card]="{header: 'Header title', footer: 'Footer content', headerIcon: 'bell'}"
+    >
+        <div> do-card instantiated with: {{'{'}}header: 'Header title', footer:
+            'Footer
+            content', headerIcon: 'bell'{{'}'}}</div>
+        <div> Some other content in do-card</div>
+    </do-card>
 </div>
