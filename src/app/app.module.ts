@@ -12,7 +12,14 @@ import { SideMenuComponent } from './layouts/side-menu/side-menu.component';
 import { CardComponent } from './layouts/card/card.component';
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, PlaygroundComponent, NavbarComponent, SideMenuComponent, CardComponent],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        PlaygroundComponent,
+        NavbarComponent,
+        SideMenuComponent,
+        CardComponent
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
