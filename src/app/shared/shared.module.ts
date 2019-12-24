@@ -13,6 +13,7 @@ import { InputSearchComponent } from './components/input-search/input-search.com
 import { DropDownMenuComponent } from './components/drop-down-menu/drop-down-menu.component';
 import { CheckComponent } from './components/check/check.component';
 import { MatTableModule } from '@angular/material/table';
+import { TableComponent } from './components/table/table.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -27,6 +28,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         InputSearchComponent,
         DropDownMenuComponent,
         CheckComponent,
+        TableComponent,
     ],
     imports: [
         CommonModule,
@@ -50,7 +52,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         DropDownMenuComponent,
         CheckComponent,
         RouterModule,
-        MatTableModule
+        TableComponent
     ]
 })
 export class SharedModule { }

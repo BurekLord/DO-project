@@ -1,0 +1,49 @@
+// TABELA SHIT
+table {
+    width: 100%;
+}
+
+.mat-table-sticky:first-child {
+    border-right: 1px solid #eeeeee;
+}
+
+.mat-header-cell {
+    padding-left: 8px !important;
+    border-right: 1px solid #eeeeee;
+}
+.mat-cell {
+    padding-left: 8px !important;
+    border-right: 1px solid #eeeeee;
+}
+
+.mat-header-cell:last-child {
+    padding-right: 0 !important;
+    border-right: none;
+
+}
+
+.mat-cell:last-child {
+    padding-right: 0 !important;
+    border-right: none;
+
+}
+
+.mat-header-cell:hover {
+    background-color: #eeeeee;
+}
+
+.mat-cell:hover {
+    background-color: #e0e0e0;
+}
+
+.mat-row:hover {
+    background-color: #eeeeee;
+}
+
+.active-row {
+    background-color: #EDF8FF !important;
+}
+
+.active-element {
+    background-color: rgb(124, 211, 255) !important;
+}
