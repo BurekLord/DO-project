@@ -1,8 +1,10 @@
+import { Task } from './../models/task.model';
 import { TooltipModel } from './../shared/models/tooltip.model';
 import { ErrorLabel } from './../shared/models/error-label.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
+import { ShortUser } from '../models/shortUser.model';
 
 @Component({
     selector: 'do-playground',
@@ -11,10 +13,15 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class PlaygroundComponent {
 
-    formControlTest = new FormControl('test', [Validators.required, Validators.maxLength(1), Validators.pattern('[a-zA-Z ]*')]);
+    // TABLE
+    displayedColumns: string[] = ['title', 'assignee', 'dueDate', 'priority', 'tags'];
+    dataSource: Task[] = [
+        new Task('1', 'Test', null, new ShortUser('1', 'me', 'url')),
+    ];
 
-    constructor(private router: Router) { }
-
+    // INPUT
+    formControlTest =
+        new FormControl('test', [Validators.required, Validators.maxLength(1), Validators.pattern('[a-zA-Z ]*')]);
     errorLabels = [
         new ErrorLabel('maxlength', 'Must be shorter then 1;', false, ''),
         new ErrorLabel('pattern', 'Must a letter char;', false, ''),
@@ -23,8 +30,13 @@ export class PlaygroundComponent {
 
     tooltip = new TooltipModel('tooltip content', 'tooltip title');
 
+    constructor(private router: Router) { }
+
+    // BUTTON
     navigateToHome() {
         this.router.navigate(['']);
     }
+
+
 
 }
