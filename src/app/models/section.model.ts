@@ -1,7 +1,7 @@
 export class Section {
     constructor(
-        public name: string,
-        public icon: string,
-        public shown: boolean
+        public name?: string,
+        public icon?: string,
+        public shown?: boolean
     ) { }
 }
