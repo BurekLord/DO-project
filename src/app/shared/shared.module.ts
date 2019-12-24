@@ -11,6 +11,8 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipComponent } from './components/tooltip/tooltip.component';
 import { InputSearchComponent } from './components/input-search/input-search.component';
 import { DropDownMenuComponent } from './components/drop-down-menu/drop-down-menu.component';
+import { CheckComponent } from './components/check/check.component';
+import { MatTableModule } from '@angular/material/table';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -23,7 +25,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         InputComponent,
         TooltipComponent,
         InputSearchComponent,
-        DropDownMenuComponent
+        DropDownMenuComponent,
+        CheckComponent,
     ],
     imports: [
         CommonModule,
@@ -36,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
                 deps: [HttpClient]
             }
         }),
-        RouterModule
+        RouterModule,
+        MatTableModule
     ],
     exports: [
         ButtonComponent,
@@ -44,7 +48,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         InputComponent,
         InputSearchComponent,
         DropDownMenuComponent,
-        RouterModule
+        CheckComponent,
+        RouterModule,
+        MatTableModule
     ]
 })
 export class SharedModule { }
