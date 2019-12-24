@@ -1,19 +1,30 @@
 // TABELA SHIT
+.table-container {
+    width: 100%;
+    overflow: auto;
+}
+
 table {
     width: 100%;
 }
 
 .mat-table-sticky:first-child {
-    border-right: 1px solid #eeeeee;
+   min-width: 20rem;
 }
 
 .mat-header-cell {
     padding-left: 8px !important;
     border-right: 1px solid #eeeeee;
+    width: 7rem;
+    max-width: 7rem;
+    min-width: 7rem;
 }
 .mat-cell {
     padding-left: 8px !important;
     border-right: 1px solid #eeeeee;
+    width: 7rem;
+    max-width: 7rem;
+    min-width: 7rem;
 }
 
 .mat-header-cell:last-child {
@@ -42,6 +53,13 @@ table {
 
 .active-row {
     background-color: #EDF8FF !important;
+}
+
+.mat-header-row {
+    height: 2rem;
+}
+.mat-row {
+    height: 2rem;
 }
 
 .active-element {
