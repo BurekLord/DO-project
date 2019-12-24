@@ -15,7 +15,7 @@ export class Task {
         public description?: string,
         public items?: Label[], // files, images etc
         public startDate?: string,
-        public endDate?: string,
+        public dueDate?: string,
         public estimatedTime?: string,
         public spentTime?: string,
         public status?: Label,
@@ -24,6 +24,7 @@ export class Task {
         public likes?: number,
         public priority?: Label,
         public done?: boolean,
+        public tags?: Label[],
         public availability?: 'public' | 'private',
         public customFields?: any[] // TODO: not sure about this yet...
     ) { }
