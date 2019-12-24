@@ -10,6 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NavbarComponent } from './layouts/navbar/navbar.component';
 import { SideMenuComponent } from './layouts/side-menu/side-menu.component';
 import { CardComponent } from './layouts/card/card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { CardComponent } from './layouts/card/card.component';
         AlertModule.forRoot(),
         ReactiveFormsModule,
         FormsModule,
+        BrowserAnimationsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
