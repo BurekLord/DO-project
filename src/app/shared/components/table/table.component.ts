@@ -1,6 +1,6 @@
 import { Subject } from 'rxjs';
 import { Task } from './../../../models/task.model';
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
 import { ShortUser } from 'src/app/models/shortUser.model';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -20,6 +20,8 @@ export class TableComponent implements OnInit {
         }
     }
 
+    @ViewChild('titleInput', { static: false }) titleInput: ElementRef;
+
     $dataSource = new MatTableDataSource<Task>();
     localData: Task[];
 
@@ -28,6 +30,7 @@ export class TableComponent implements OnInit {
     currentValue: any;
     titleBeforeEdit: string;
     titleEdited = false;
+    mouseOverTitle = false;
 
     taskPlaceholder1: Task;
     taskPlaceholder2: Task;
@@ -73,9 +76,11 @@ export class TableComponent implements OnInit {
 
     updateTitleData(event, index, value) {
         // TODO: update DB also or emit data to parent
-        this.$dataSource.data[index].title = value;
-        this.titleEdited = true;
-
+        if (event.key === 'Enter') {
+            this.$dataSource.data[index].title = value;
+            this.titleEdited = true;
+            return;
+        }
     }
 
     editModeOn() {
@@ -85,6 +90,7 @@ export class TableComponent implements OnInit {
     undoTitleChanges(index) {
         if (!this.titleEdited) {
             this.$dataSource.data[index].title = this.titleBeforeEdit;
+            this.titleInput.nativeElement.value = this.titleBeforeEdit;
         }
     }
 

@@ -30,7 +30,6 @@ table {
 .mat-header-cell:last-child {
     padding-right: 0 !important;
     border-right: none;
-
 }
 
 .mat-cell:last-child {
@@ -45,6 +44,9 @@ table {
 
 .mat-cell:hover {
     background-color: #e0e0e0;
+    .show-edit-on-hover {
+        display: flex;
+    }
 }
 
 .mat-row:hover {
@@ -64,4 +66,23 @@ table {
 
 .active-element {
     background-color: rgb(124, 211, 255) !important;
+}
+
+.title-input-container {
+    input {
+        width: 70%;
+    }
+
+   .table-edit-icon {
+       font-size: 1rem;
+       align-items: center;
+       justify-content: center;
+       display: flex;
+       margin-left: auto;
+       color: rgba(0,0,0, 0.5)
+   }
+
+    .show-edit-on-hover {
+        display: none;
+    }
 }

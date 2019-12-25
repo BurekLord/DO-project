@@ -30,23 +30,31 @@
             <td
                 mat-cell
                 *matCellDef="let element; let i = index"
-                (click)="selectCell('title', element.title)"
+                (click)="selectCell('title', element.title); titleInput.focus()"
                 [ngClass]="{'active-element': isCurrentCellActive('title', element?.title)}"
             >
-                <input
-                    #titleInput
-                    *ngIf="isCurrentCellActive('title', element?.title); else titleLabel"
-                    type="text"
-                    value="{{element?.title}}"
-                    (focus)="editModeOn()"
-                    (focusout)="undoTitleChanges(i ,titleInput.value)"
-                    (keyup.enter)="updateTitleData($event, i ,titleInput)"
-                />
-                <ng-template #titleLabel>
-                    <span>
+                <div class="flex-align-center title-input-container">
+                    <input
+                        #titleInput
+                        [hidden]="!isCurrentCellActive('title', element?.title)"
+                        type="text"
+                        value="{{element?.title}}"
+                        (focus)="editModeOn()"
+                        (focusout)="undoTitleChanges(i ,titleInput.value)"
+                        (keyup)="updateTitleData($event, i ,titleInput.value)"
+                    />
+                    <span
+                        [hidden]="isCurrentCellActive('title', element?.title)"
+                    >
                         {{element.title}}
                     </span>
-                </ng-template>
+                    <mat-icon
+                        (click)="titleInput.focus()"
+                        class="table-edit-icon show-edit-on-hover"
+                        aria-hidden="false"
+                        aria-label="Edit icon"
+                    >edit</mat-icon>
+                </div>
             </td>
         </ng-container>
         <ng-container matColumnDef="assignee">

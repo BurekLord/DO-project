@@ -13,6 +13,7 @@ import { InputSearchComponent } from './components/input-search/input-search.com
 import { DropDownMenuComponent } from './components/drop-down-menu/drop-down-menu.component';
 import { CheckComponent } from './components/check/check.component';
 import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
 import { TableComponent } from './components/table/table.component';
 import { FormsModule } from '@angular/forms';
 
@@ -44,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         }),
         RouterModule,
         MatTableModule,
+        MatIconModule,
         FormsModule
     ],
     exports: [
