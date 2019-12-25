@@ -43,5 +43,13 @@ export function log(text: string, objToLog?: any) {
     }
 }
 
+export function getRandomColor() {
+    const letters = '567ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 9)];
+    }
+    return color;
+}
 
 
