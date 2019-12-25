@@ -65,12 +65,13 @@ table {
 }
 
 .active-element {
-    background-color: rgb(124, 211, 255) !important;
+    background-color: rgb(184, 231, 255) !important;
 }
 
 .title-input-container {
     input {
         width: 70%;
+        border: none;
     }
 
    .title-icons {
@@ -80,9 +81,11 @@ table {
     display: flex;
     margin-left: .5rem;
     margin-right: .5rem;
+    color: rgba(0,0,0,.6);
 
     &-edit {
         color: rgba(0,0,0,.4);
+        font-size: 1rem;
     }
 
     &-like::after {
