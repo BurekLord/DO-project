@@ -1,21 +1,23 @@
 import { Subject } from 'rxjs';
 import { Task } from './../../../models/task.model';
-import { Component, OnInit, Input, Output, ViewChild, ElementRef } from '@angular/core';
-import { ShortUser } from 'src/app/models/shortUser.model';
+import { Component, Input, ChangeDetectorRef } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { getRandomColor } from '../../core/utils';
 
 @Component({
     selector: 'do-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
 
     dataSourceSubject: Subject<any> = new Subject();
 
     @Input() displayedColumns: string[];
-    @Input() set dataSource(data: any) {
+    @Input() set dataSource(data: Task[]) {
         if (data) {
+            this.generateRandomColors(data);
             this.dataSourceSubject.next(data);
         }
     }
@@ -33,7 +35,7 @@ export class TableComponent implements OnInit {
     taskPlaceholder1: Task;
     taskPlaceholder2: Task;
 
-    constructor() {
+    constructor(private router: Router, private cd: ChangeDetectorRef) {
         this.taskPlaceholder1 = new Task(
             'placeholder1', null, null, null,
             null, null, null, null, null,
@@ -53,15 +55,12 @@ export class TableComponent implements OnInit {
         });
     }
 
-    ngOnInit() {
-        // TODO:
-    }
+    selectRow(task: Task) {
+        this.currentRow = task;
+        this.clearNotificationsForTask(task);
 
-    selectRow(row: Task) {
-        this.currentRow = row;
-        this.clearNotificationsForTask(row);
-
-        // TODO: open task detail
+        // TODO: open task detail page on the side
+        // this.router.navigate(['/user/project/', task.id]);
     }
 
     selectCell(col, value) {
@@ -84,9 +83,34 @@ export class TableComponent implements OnInit {
         }
     }
 
-    clearNotificationsForTask(row: Task) {
+    focusoutSave(index, value) {
+        this.$dataSource.data[index].title = value;
+        this.titleEdited = true;
+    }
+
+
+    clearNotificationsForTask(task: Task) {
         // TODO: update DB or emit data to parent
-        this.$dataSource.data[this.$dataSource.data.indexOf(row)].notifications = undefined;
+        this.$dataSource.data[this.$dataSource.data.indexOf(task)].notifications = undefined;
+
+    }
+
+    removeUserFromTask(task: Task) {
+        // TODO: update DB or emit data to parent
+        this.$dataSource.data[this.$dataSource.data.indexOf(task)].assignee = undefined;
+    }
+
+    getUserInitials(name: string) {
+        const temp = name.split(' ');
+        return (temp[0][0] + temp[1][0]).toUpperCase();
+    }
+
+    generateRandomColors(tasks: Task[]) {
+        tasks.forEach(task => {
+            if (!task.assignee.imgUrl) {
+                task.assignee.imgUrl = getRandomColor();
+            }
+        });
     }
 
     isCurrentCellActive(colName, value) {

@@ -42,7 +42,7 @@
                         [hidden]="!isCurrentCellActive('title', element?.title)"
                         type="text"
                         value="{{element?.title}}"
-                        (focusout)="!titleEdited ? titleInput.value = element?.title : null; titleTooltipText = undefined"
+                        (focusout)="focusoutSave(i ,titleInput.value)"
                         (keyup)="updateTitleData($event, i ,titleInput.value)"
                     />
                     <span
@@ -112,7 +112,35 @@
                 *matCellDef="let element"
                 (click)="selectCell('assignee', element.assignee)"
                 [ngClass]="{'active-element': currentValue === element?.assignee && currentCol === 'assignee'}"
-            > {{element.assignee}} </td>
+            >
+                <div
+                    *ngIf="element.assignee"
+                    class="users-box"
+                >
+                    <div
+                        class="users-box-assignee"
+                        (click)="removeUserFromTask(element)"
+                    >
+                        <img
+                            *ngIf="element.assignee.imgUrl[0] !== '#'"
+                            src="{{element.assignee.imgUrl}}"
+                            alt="{{element.assignee.name}}"
+                        >
+                        <div
+                            *ngIf="element.assignee.imgUrl[0] === '#'"
+                            class="users-box-no-img"
+                            [style.background-color]="element.assignee.imgUrl"
+                        >
+                            {{getUserInitials(element.assignee.name)}}</div>
+                    </div>
+                    <span
+                        class="users-box-name">{{element.assignee.name}}</span>
+                    <div
+                        class="users-box-watcher"
+                        *ngFor="let watcher of element.watchers"
+                    ></div>
+                </div>
+            </td>
         </ng-container>
         <ng-container matColumnDef="dueDate">
             <th

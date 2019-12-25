@@ -58,16 +58,17 @@ table {
 }
 
 .mat-header-row {
-    height: 2rem;
+    height: 2.5rem;
 }
 .mat-row {
-    height: 2rem;
+    height: 2.5rem;
 }
 
 .active-element {
     background-color: rgb(184, 231, 255) !important;
 }
 
+// TITLE
 .title-input-container {
     input {
         width: 70%;
@@ -152,4 +153,33 @@ table {
             border: .5px solid #000000;
         }
     }
+}
+
+// ASSIGNEE
+.users-box {
+    display: flex;
+
+    &-assignee {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    &-no-img {
+        overflow: visible;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-name {
+// TODO:
+    }
+
+    &-watcher {
+// TODO:
+    }
+
 }
