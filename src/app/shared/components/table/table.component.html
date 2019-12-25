@@ -30,17 +30,19 @@
             <td
                 mat-cell
                 *matCellDef="let element; let i = index"
-                (click)="selectCell('title', element.title); titleInput.focus()"
+                (click)="selectCell('title', element.title, i); titleInput.focus()"
                 [ngClass]="{'active-element': isCurrentCellActive('title', element?.title)}"
             >
                 <div class="flex-align-center title-input-container">
                     <input
+                        matTooltip="Press enter to save."
+                        [matTooltipPosition]="'above'"
+                        [matTooltipShowDelay]="1000"
                         #titleInput
                         [hidden]="!isCurrentCellActive('title', element?.title)"
                         type="text"
                         value="{{element?.title}}"
-                        (focus)="editModeOn()"
-                        (focusout)="undoTitleChanges(i ,titleInput.value)"
+                        (focusout)="!titleEdited ? titleInput.value = element?.title : null; titleTooltipText = undefined"
                         (keyup)="updateTitleData($event, i ,titleInput.value)"
                     />
                     <span
@@ -48,12 +50,54 @@
                     >
                         {{element.title}}
                     </span>
-                    <mat-icon
-                        (click)="titleInput.focus()"
-                        class="table-edit-icon show-edit-on-hover"
-                        aria-hidden="false"
-                        aria-label="Edit icon"
-                    >edit</mat-icon>
+                    <span
+                        class="span-relative"
+                        *ngIf="element?.notifications > 0"
+                    >
+                        <span
+                            class="circle circle-notification">{{element?.notifications}}</span>
+                        <mat-icon
+                            class="title-icons title-icons-notification"
+                            aria-hidden="false"
+                            aria-label="Edit icon"
+                        >notifications_none</mat-icon>
+                    </span>
+                    <span
+                        class="span-relative"
+                        *ngIf="element.likes > 0"
+                    >
+                        <span
+                            class="circle circle-like">{{element?.likes}}</span>
+                        <mat-icon
+                            class="title-icons title-icons-like"
+                            aria-hidden="false"
+                            aria-label="Edit icon"
+                        >sentiment_very_satisfied</mat-icon>
+                    </span>
+                    <span
+                        class="span-relative"
+                        *ngIf="element?.subTasks?.length > 0"
+                    >
+                        <span
+                            class="circle circle-subtask">{{element?.subTasks?.length}}</span>
+                        <mat-icon
+                            class="title-icons"
+                            aria-hidden="false"
+                            aria-label="Edit icon"
+                        >subdirectory_arrow_right</mat-icon>
+                    </span>
+                    <span
+                        class="span-relative ml-auto"
+                        [hidden]="isCurrentCellActive('title', element?.title)"
+                    >
+                        <mat-icon
+                            *ngIf="element?.title"
+                            (click)="titleInput.focus()"
+                            class="title-icons title-icons-edit show-edit-on-hover"
+                            aria-hidden="false"
+                            aria-label="Edit icon"
+                        >edit</mat-icon>
+                    </span>
                 </div>
             </td>
         </ng-container>

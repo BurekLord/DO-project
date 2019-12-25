@@ -6,7 +6,7 @@ export class Project {
     constructor(
         public id?: string,
         public title?: Label,
-        public tasks?: (Task | Section)[],
+        public tasks?: Task[],
         public users?: ShortUser[],
         public creator?: ShortUser,
         public description?: string,

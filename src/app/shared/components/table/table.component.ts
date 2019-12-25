@@ -20,17 +20,15 @@ export class TableComponent implements OnInit {
         }
     }
 
-    @ViewChild('titleInput', { static: false }) titleInput: ElementRef;
-
     $dataSource = new MatTableDataSource<Task>();
     localData: Task[];
 
     currentRow: Task;
     currentCol: string;
     currentValue: any;
-    titleBeforeEdit: string;
+
     titleEdited = false;
-    mouseOverTitle = false;
+    titleTooltipText: string;
 
     taskPlaceholder1: Task;
     taskPlaceholder2: Task;
@@ -59,15 +57,18 @@ export class TableComponent implements OnInit {
         // TODO:
     }
 
-    selectRow(row) {
+    selectRow(row: Task) {
         this.currentRow = row;
+        this.clearNotificationsForTask(row);
+
+        // TODO: open task detail
     }
 
     selectCell(col, value) {
+        this.titleEdited = false;
         if (value) {
             this.currentCol = col;
             this.currentValue = value;
-            this.titleBeforeEdit = col === 'title' ? value : undefined;
         } else {
             this.currentCol = undefined;
             this.currentValue = undefined;
@@ -83,15 +84,9 @@ export class TableComponent implements OnInit {
         }
     }
 
-    editModeOn() {
-        this.titleEdited = false;
-    }
-
-    undoTitleChanges(index) {
-        if (!this.titleEdited) {
-            this.$dataSource.data[index].title = this.titleBeforeEdit;
-            this.titleInput.nativeElement.value = this.titleBeforeEdit;
-        }
+    clearNotificationsForTask(row: Task) {
+        // TODO: update DB or emit data to parent
+        this.$dataSource.data[this.$dataSource.data.indexOf(row)].notifications = undefined;
     }
 
     isCurrentCellActive(colName, value) {

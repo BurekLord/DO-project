@@ -14,6 +14,7 @@ import { DropDownMenuComponent } from './components/drop-down-menu/drop-down-men
 import { CheckComponent } from './components/check/check.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { TableComponent } from './components/table/table.component';
 import { FormsModule } from '@angular/forms';
 
@@ -46,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         RouterModule,
         MatTableModule,
         MatIconModule,
+        MatTooltipModule,
         FormsModule
     ],
     exports: [

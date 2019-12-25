@@ -16,7 +16,7 @@ export class PlaygroundComponent {
     // TABLE
     displayedColumns: string[] = ['title', 'assignee', 'dueDate', 'priority', 'tags'];
     dataSource: Task[] = [
-        new Task('1', 'Test', null, new ShortUser('1', 'me i', 'url')),
+        new Task('1', 'Test', null, new ShortUser('1', 'me i', 'url'), null, null, null, null, null, null, null, null, null, null, null, null, [new Task('asd', 'subtask')], 4, null, null, null, 2),
         new Task('2', 'Test2', null, new ShortUser('2', 'mini me', 'url')),
     ];
 

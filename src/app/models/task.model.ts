@@ -20,11 +20,12 @@ export class Task {
         public spentTime?: string,
         public status?: Label,
         public reminders?: Reminder[],
-        public subTaskIds?: (Task | Section)[],
+        public subTasks?: Task[],
         public likes?: number,
         public priority?: Label,
         public done?: boolean,
         public tags?: Label[],
+        public notifications?: number,
         public availability?: 'public' | 'private',
         public customFields?: any[] // TODO: not sure about this yet...
     ) { }
