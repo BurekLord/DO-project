@@ -35,9 +35,6 @@
             >
                 <div class="flex-align-center title-input-container">
                     <input
-                        matTooltip="Press enter to save."
-                        [matTooltipPosition]="'above'"
-                        [matTooltipShowDelay]="1000"
                         #titleInput
                         [hidden]="!isCurrentCellActive('title', element?.title)"
                         type="text"
@@ -109,7 +106,7 @@
             > Assignee </th>
             <td
                 mat-cell
-                *matCellDef="let element"
+                *matCellDef="let element; let i = index"
                 (click)="selectCell('assignee', element.assignee)"
                 [ngClass]="{'active-element': currentValue === element?.assignee && currentCol === 'assignee'}"
             >
@@ -117,28 +114,43 @@
                     *ngIf="element.assignee"
                     class="users-box"
                 >
-                    <div
-                        class="users-box-assignee"
-                        (click)="removeUserFromTask(element)"
-                    >
+                    <div class="users-box-assignee">
                         <img
-                            *ngIf="element.assignee.imgUrl[0] !== '#'"
+                            class="users-box-img"
+                            *ngIf="element.assignee.imgUrl"
                             src="{{element.assignee.imgUrl}}"
                             alt="{{element.assignee.name}}"
                         >
                         <div
-                            *ngIf="element.assignee.imgUrl[0] === '#'"
+                            *ngIf="!element.assignee.imgUrl"
                             class="users-box-no-img"
-                            [style.background-color]="element.assignee.imgUrl"
+                            [style.background-color]="element.assignee.color"
                         >
                             {{getUserInitials(element.assignee.name)}}</div>
                     </div>
                     <span
-                        class="users-box-name">{{element.assignee.name}}</span>
-                    <div
-                        class="users-box-watcher"
-                        *ngFor="let watcher of element.watchers"
-                    ></div>
+                        [ngClass]="{'width-2': element.watchers && element.watchers.length > 0}"
+                        class="users-box-name"
+                    >{{abbreviateString(element.assignee.name, 8)}}</span>
+                    <mat-icon
+                        class="users-box-icon"
+                        aria-hidden="false"
+                        aria-label="Edit icon"
+                        (click)="removeUserFromTask(element)"
+                    >close</mat-icon>
+                </div>
+                <mat-icon
+                    *ngIf="element.assignee !== null && !element.assignee"
+                    class="add-person"
+                    aria-hidden="false"
+                    aria-label="Add user button"
+                >person_add</mat-icon>
+                <div
+                    class="input-select"
+                    *ngIf="element.assignee !== null && !element.assignee"
+                >
+                    TODO: make input with select cmp
+                    <!-- <do-input-select></do-input-select> -->
                 </div>
             </td>
         </ng-container>

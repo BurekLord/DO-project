@@ -3,5 +3,6 @@ export class ShortUser {
         public userId?: string,
         public name?: string,
         public imgUrl?: string,
+        public color?: string
     ) { }
 }

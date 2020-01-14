@@ -1,15 +1,15 @@
 import { Subject } from 'rxjs';
 import { Task } from './../../../models/task.model';
-import { Component, Input, ChangeDetectorRef } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { getRandomColor } from '../../core/utils';
 
 @Component({
     selector: 'do-table',
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss']
 })
+
 export class TableComponent {
 
     dataSourceSubject: Subject<any> = new Subject();
@@ -17,7 +17,6 @@ export class TableComponent {
     @Input() displayedColumns: string[];
     @Input() set dataSource(data: Task[]) {
         if (data) {
-            this.generateRandomColors(data);
             this.dataSourceSubject.next(data);
         }
     }
@@ -35,7 +34,10 @@ export class TableComponent {
     taskPlaceholder1: Task;
     taskPlaceholder2: Task;
 
-    constructor(private router: Router, private cd: ChangeDetectorRef) {
+    showAssigneeInput = false;
+
+    constructor(private router: Router) {
+        // TODO: remove mock
         this.taskPlaceholder1 = new Task(
             'placeholder1', null, null, null,
             null, null, null, null, null,
@@ -63,7 +65,7 @@ export class TableComponent {
         // this.router.navigate(['/user/project/', task.id]);
     }
 
-    selectCell(col, value) {
+    selectCell(col: string, value: any) {
         this.titleEdited = false;
         if (value) {
             this.currentCol = col;
@@ -76,7 +78,7 @@ export class TableComponent {
 
     updateTitleData(event, index, value) {
         // TODO: update DB also or emit data to parent
-        if (event.key === 'Enter') {
+        if (event && event.key === 'Enter') {
             this.$dataSource.data[index].title = value;
             this.titleEdited = true;
             return;
@@ -91,30 +93,39 @@ export class TableComponent {
 
     clearNotificationsForTask(task: Task) {
         // TODO: update DB or emit data to parent
-        this.$dataSource.data[this.$dataSource.data.indexOf(task)].notifications = undefined;
+        if (this.$dataSource.data.indexOf(task) !== -1) {
+            this.$dataSource.data[this.$dataSource.data.indexOf(task)].notifications = undefined;
+        }
 
     }
 
     removeUserFromTask(task: Task) {
         // TODO: update DB or emit data to parent
-        this.$dataSource.data[this.$dataSource.data.indexOf(task)].assignee = undefined;
+        if (this.$dataSource.data.indexOf(task) !== -1) {
+            this.$dataSource.data[this.$dataSource.data.indexOf(task)].assignee = undefined;
+        }
     }
 
     getUserInitials(name: string) {
-        const temp = name.split(' ');
-        return (temp[0][0] + temp[1][0]).toUpperCase();
+        if (name) {
+            const temp = name.split(' ');
+            return (temp[0][0] + temp[1][0]).toUpperCase();
+        }
     }
 
-    generateRandomColors(tasks: Task[]) {
-        tasks.forEach(task => {
-            if (!task.assignee.imgUrl) {
-                task.assignee.imgUrl = getRandomColor();
-            }
-        });
+    abbreviateString(name: string, abbLength) {
+        if (name && name.length > abbLength) {
+            return name.substr(0, abbLength) + '...';
+        } else {
+            return name;
+        }
     }
 
     isCurrentCellActive(colName, value) {
-        return this.currentValue === value && this.currentCol === colName;
+        if (colName) {
+            return this.currentValue === value && this.currentCol === colName;
+        } else {
+            return false;
+        }
     }
-
 }

@@ -13,14 +13,16 @@ table {
 }
 
 .mat-header-cell {
-    padding-left: 8px !important;
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
     border-right: 1px solid #eeeeee;
     width: 7rem;
     max-width: 7rem;
     min-width: 7rem;
 }
 .mat-cell {
-    padding-left: 8px !important;
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
     border-right: 1px solid #eeeeee;
     width: 7rem;
     max-width: 7rem;
@@ -44,6 +46,7 @@ table {
 
 .mat-cell:hover {
     background-color: #e0e0e0;
+    border: 1px solid #a5a4a4;
     .show-edit-on-hover {
         display: flex;
     }
@@ -157,11 +160,18 @@ table {
 
 // ASSIGNEE
 .users-box {
+    position: relative;
     display: flex;
+    align-items: center;
 
     &-assignee {
         width: 2rem;
         height: 2rem;
+    }
+
+    &-img {
+        width: 100%;
+        height: 100%;
     }
 
     &-no-img {
@@ -175,11 +185,39 @@ table {
     }
 
     &-name {
-// TODO:
+        margin-left: .3rem;
+        white-space: nowrap;
+        overflow: hidden;
+        font-size: .7rem;
     }
 
-    &-watcher {
-// TODO:
+    &-icon {
+        position: absolute;
+        right: -12px;
+        font-size: 1.2rem;
+        top: 0;
+        cursor: pointer;
     }
+}
 
+.add-person {
+    overflow: visible;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    border: 1px dashed rgba(0,0,0,.6);
+    color: rgba(0,0,0,.4);
+    border-radius: 100px;
+    padding: 0.9rem;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.input-select {
+    // TODO:
+}
+
+.width-2 {
+    width: 2rem;
 }

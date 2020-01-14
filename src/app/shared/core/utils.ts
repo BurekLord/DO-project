@@ -1,4 +1,5 @@
 import { isDevMode } from '@angular/core';
+
 export const sizeClassRegex = /^(([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9]))|(([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9])\|([1-9][1-9]|[1-9]))$/;
 export function getClassFromSize(size: string): string {
     if (size && size !== '' && size.match(sizeClassRegex)) {
@@ -50,6 +51,15 @@ export function getRandomColor() {
         color += letters[Math.floor(Math.random() * 9)];
     }
     return color;
+}
+
+export function abbreviateString(str: string, abbLength) {
+    return str.substr(0, abbLength) + '...';
+}
+
+export function getInitials(name: string) {
+    const temp = name.split(' ');
+    return (temp[0][0] + temp[1][0]).toUpperCase();
 }
 
 
