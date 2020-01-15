@@ -1,0 +1,185 @@
+{
+    "tasks": [
+        {
+            "id": "1",
+            "title": "Mock task 1",
+            "creator": {
+                "userId": "1",
+                "name": "Mock User1"
+            },
+            "assignee": {
+                "userId": "1",
+                "name": "Mock User1"
+            },
+            "projectId": [
+                "1"
+            ],
+            "createdOn": "01/01/2011",
+            "updatedOn": "01/01/2011",
+            "watchers": null,
+            "description": "Mock task for testing 1",
+            "items": [
+                {
+                    "text": "Task item 1",
+                    "color": "red"
+                }
+            ],
+            "startDate": "01/01/2011",
+            "dueDate": "02/01/2011",
+            "estimatedTime": "8h",
+            "spentTime": "8h",
+            "status": {
+                "text": "In progress"
+            },
+            "reminders": [
+                {
+                    "title": "Mock reminder 1",
+                    "text": "do something 1",
+                    "time": "02/01/2011"
+                },
+                {
+                    "title": "Mock reminder 2",
+                    "text": "do something 2",
+                    "time": "02/01/2011"
+                }
+            ],
+            "subTasks": [
+                {
+                    "id": "2",
+                    "title": "Mock sub task 2",
+                    "creator": {
+                        "userId": "1",
+                        "name": "Mock User1"
+                    },
+                    "assignee": {
+                        "userId": "1",
+                        "name": "Mock User1"
+                    },
+                    "projectId": [
+                        "1"
+                    ],
+                    "createdOn": "01/01/2011",
+                    "updatedOn": "01/01/2011",
+                    "watchers": null,
+                    "description": "Mock sub task for testing 2",
+                    "items": [
+                        {
+                            "text": "Task item 1",
+                            "color": "red"
+                        }
+                    ],
+                    "startDate": "01/01/2011",
+                    "dueDate": "02/01/2011",
+                    "estimatedTime": "8h",
+                    "spentTime": "8h",
+                    "status": {
+                        "text": "In progress"
+                    },
+                    "reminders": [
+                        {
+                            "title": "Mock reminder 1",
+                            "text": "do something 1",
+                            "time": "02/01/2011"
+                        },
+                        {
+                            "title": "Mock reminder 2",
+                            "text": "do something 2",
+                            "time": "02/01/2011"
+                        }
+                    ],
+                    "subTasks": [],
+                    "likes": 3,
+                    "priority": {
+                        "text": "Task priority level 1",
+                        "color": "red"
+                    },
+                    "done": false,
+                    "tags": [
+                        {
+                            "text": "tag 1",
+                            "color": "blue"
+                        }
+                    ],
+                    "notifications": 5,
+                    "availability": "public",
+                    "customFields": null
+                }
+            ],
+            "likes": 3,
+            "priority": {
+                "text": "Task priority level 1",
+                "color": "red"
+            },
+            "done": false,
+            "tags": [
+                {
+                    "text": "tag 1",
+                    "color": "blue"
+                }
+            ],
+            "notifications": 5,
+            "availability": "public",
+            "customFields": null
+        },
+        {
+            "id": "3",
+            "title": "Mock task 3",
+            "creator": {
+                "userId": "1",
+                "name": "Mock User1"
+            },
+            "assignee": {
+                "userId": "1",
+                "name": "Mock User1"
+            },
+            "projectId": [
+                "1"
+            ],
+            "createdOn": "01/01/2011",
+            "updatedOn": "01/01/2011",
+            "watchers": null,
+            "description": "Mock task for testing 3",
+            "items": [
+                {
+                    "text": "Task item 3",
+                    "color": "red"
+                }
+            ],
+            "startDate": "01/01/2011",
+            "dueDate": "02/01/2011",
+            "estimatedTime": "8h",
+            "spentTime": "8h",
+            "status": {
+                "text": "In progress"
+            },
+            "reminders": [
+                {
+                    "title": "Mock reminder 3",
+                    "text": "do something 3",
+                    "time": "02/01/2011"
+                },
+                {
+                    "title": "Mock reminder 3",
+                    "text": "do something 3",
+                    "time": "02/01/2011"
+                }
+            ],
+            "subTasks": null,
+            "likes": 1,
+            "priority": {
+                "text": "Task priority level 3",
+                "color": "red"
+            },
+            "done": false,
+            "tags": [
+                {
+                    "text": "tag 3",
+                    "color": "blue"
+                }
+            ],
+            "notifications": 2,
+            "availability": "public",
+            "customFields": null
+        }
+    ]
+}

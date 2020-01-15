@@ -1,11 +1,12 @@
+import { TaskService } from './../services/task.service';
 import { Subject } from 'rxjs';
-import { Task } from './../models/task.model';
+import { Task } from '../models/task/task.model';
 import { TooltipModel } from './../shared/models/tooltip.model';
 import { ErrorLabel } from './../shared/models/error-label.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, Validators } from '@angular/forms';
-import { ShortUser } from '../models/shortUser.model';
+import { ShortUser } from '../models/shortUser/shortUser.model';
 import { getRandomColor } from '../shared/core/utils';
 
 @Component({
@@ -17,7 +18,6 @@ export class PlaygroundComponent implements OnInit {
 
     // TABLE
     displayedColumns: string[] = ['title', 'assignee', 'dueDate', 'priority', 'tags'];
-    dataFromDb: Subject<Task[]> = new Subject();
     dataSource: Task[];
 
     // INPUT
@@ -31,27 +31,19 @@ export class PlaygroundComponent implements OnInit {
 
     tooltip = new TooltipModel('tooltip content', 'tooltip title');
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private taskService: TaskService) { }
 
     ngOnInit() {
-        // TODO: this should be done in the service that calls the BE for task list
-        this.dataFromDb.subscribe(data => {
-            console.log('asd');
-            data.forEach(task => {
+        // TODO: fix mock user id
+        this.taskService.getAllTasksForUser('1').subscribe(tasks => {
+            tasks.forEach(task => {
                 if (task.assignee && !task.assignee.imgUrl) {
                     task.assignee.color = getRandomColor();
                 }
             });
-            this.dataSource = data;
+            this.dataSource = tasks;
+            console.log('datasource', this.dataSource);
         });
-        this.dataFromDb.next([
-            new Task('1', 'Test', null,
-                new ShortUser('1', 'me isssssssssssssss', null),
-                null, null, null, null, null, null, null, null, null, null, null, null,
-                [new Task('asd', 'subtask')], 4, null, null, null, 2),
-            new Task('2', 'Test2', null, new ShortUser('2', 'mini me',
-                'https://2.bp.blogspot.com/-8P_iI3YueO0/T73feHn5VSI/AAAAAAAAAiw/N5N3HmVmk9I/s320/6a00d834516a0869e2016760f339c3970b-800wi.jpg')),
-        ]);
     }
 
     // BUTTON
