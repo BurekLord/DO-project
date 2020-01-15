@@ -42,7 +42,6 @@ export class PlaygroundComponent implements OnInit {
                 }
             });
             this.dataSource = tasks;
-            console.log('datasource', this.dataSource);
         });
     }
 

@@ -2,6 +2,7 @@ import { TooltipModel } from './../../models/tooltip.model';
 import { IBaseElement } from './../../core/base-element';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BaseElement } from '../../core/base-element';
+import { log } from '../../core/utils';
 
 export enum BUTTON_TYPES {
     DANGER = 'danger',
@@ -97,7 +98,7 @@ export class ButtonComponent implements IBaseElement, OnInit {
             }
             return `btn-${type}`;
         } else if (this.baseElementImpl.isDevMode) {
-            console.log(`%cInput proper btn type:` + `
+            log(`%cInput proper btn type:` + `
     %cDANGER = 'danger',
     SUCCESS = 'success',
     PRIMARY = 'primary',

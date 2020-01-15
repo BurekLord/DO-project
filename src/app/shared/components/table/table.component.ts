@@ -1,5 +1,5 @@
 import { Subject } from 'rxjs';
-import { Task } from './../../../models/task.model';
+import { Task } from '../../../models/task/task.model';
 import { Component, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 
 export class TableComponent {
 
-    dataSourceSubject: Subject<any> = new Subject();
+    dataSourceSubject: Subject<Task[]> = new Subject();
 
     @Input() displayedColumns: string[];
     @Input() set dataSource(data: Task[]) {
@@ -37,7 +37,6 @@ export class TableComponent {
     showAssigneeInput = false;
 
     constructor(private router: Router) {
-        // TODO: remove mock
         this.taskPlaceholder1 = new Task(
             'placeholder1', null, null, null,
             null, null, null, null, null,
@@ -50,9 +49,10 @@ export class TableComponent {
             null, null, null, null, null, null, null,
             null, null, null, null, null, null);
 
-        this.$dataSource.data = [this.taskPlaceholder1, this.taskPlaceholder2];
+        const tempData = [this.taskPlaceholder1, this.taskPlaceholder2];
         this.dataSourceSubject.subscribe(data => {
-            this.$dataSource.data.unshift(...data);
+            tempData.unshift(...data);
+            this.$dataSource.data = tempData;
             this.localData = this.$dataSource.data;
         });
     }

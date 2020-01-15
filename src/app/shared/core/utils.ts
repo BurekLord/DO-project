@@ -36,9 +36,9 @@ export function getClassFromSize(size: string): string {
     }
 }
 
-export function log(text: string, objToLog?: any) {
+export function log(text: string, ...objToLog: any) {
     if (isDevMode()) {
-        console.log(text, objToLog);
+        console.log(text, ...objToLog);
     } else {
         return;
     }
@@ -54,12 +54,27 @@ export function getRandomColor() {
 }
 
 export function abbreviateString(str: string, abbLength) {
-    return str.substr(0, abbLength) + '...';
+    if (str && str.length > abbLength) {
+        return str.substr(0, abbLength) + (str.length > abbLength ? '...' : '');
+    } else { return str; }
 }
 
 export function getInitials(name: string) {
-    const temp = name.split(' ');
-    return (temp[0][0] + temp[1][0]).toUpperCase();
+    if (name && name.length > 0) {
+        const temp = name.split(' ');
+        return (temp[0][0] + temp[1][0]).toUpperCase();
+    }
 }
 
-
+export function jsonIsEmpty<M>(model: M) {
+    let allKeysAreEmpty = true;
+    if (model) {
+        Object.keys(model).forEach(key => {
+            if (model[key] !== null && model[key] !== undefined) {
+                allKeysAreEmpty = false;
+                return;
+            }
+        });
+    }
+    return allKeysAreEmpty;
+}

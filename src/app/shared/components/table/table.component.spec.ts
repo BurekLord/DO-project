@@ -1,4 +1,4 @@
-import { Task } from './../../../models/task.model';
+import { Task } from '../../../models/task/task.model';
 import { createSpyFromClass } from 'jasmine-auto-spies';
 import { TableComponent } from './table.component';
 import { TestBed } from '@angular/core/testing';
@@ -127,6 +127,11 @@ describe('TableComponent', () => {
     describe('METHOD: focusoutSave', () => {
         When(() => {
             componentUnderTest.focusoutSave(fakeIndex, fakeValue);
+        });
+
+        Given(() => {
+            componentUnderTest.$dataSource = new MatTableDataSource<Task>();
+            componentUnderTest.$dataSource.data = [new Task('1', 'old title')];
         });
 
         // tslint:disable-next-line: max-line-length
